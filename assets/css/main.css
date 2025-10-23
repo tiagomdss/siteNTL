@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-gray-950 text-white antialiased;
+    background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Liquid Glass Effect */
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl;
+  }
+  
+  .glass-strong {
+    @apply bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl;
+  }
+  
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600;
+  }
+  
+  /* Scroll to Top Button */
+  .scroll-to-top {
+    @apply fixed bottom-8 right-8 z-50 p-4 rounded-full;
+    @apply bg-gradient-to-r from-primary-500 to-primary-600;
+    @apply text-white shadow-2xl shadow-primary-500/50;
+    @apply transition-all duration-300 hover:scale-110;
+    @apply opacity-0 pointer-events-none;
+  }
+  
+  .scroll-to-top.show {
+    @apply opacity-100 pointer-events-auto;
+  }
+  
+  /* Animated Gradient Background */
+  .gradient-bg {
+    @apply bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900;
+    background-size: 200% 200%;
+    animation: gradient 15s ease infinite;
+  }
+  
+  /* Liquid Button */
+  .btn-liquid {
+    @apply relative px-8 py-4 rounded-full font-semibold text-white overflow-hidden;
+    @apply bg-gradient-to-r from-primary-500 to-primary-600;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-2xl hover:shadow-primary-500/50 hover:scale-105;
+  }
+  
+  .btn-liquid::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-primary-400 to-primary-500;
+    @apply opacity-0 transition-opacity duration-300;
+  }
+  
+  .btn-liquid:hover::before {
+    @apply opacity-100;
+  }
+  
+  /* Card with Liquid Effect */
+  .card-liquid {
+    @apply relative p-6 rounded-2xl;
+    @apply bg-gradient-to-br from-white/5 to-white/10;
+    @apply backdrop-blur-lg border border-white/10;
+    @apply transition-all duration-300;
+    @apply hover:border-primary-500/50 hover:shadow-xl hover:shadow-primary-500/20;
+  }
+  
+  /* Floating Animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  /* Glow Effect */
+  .glow {
+    @apply animate-glow;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-500/50 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-500;
+}
