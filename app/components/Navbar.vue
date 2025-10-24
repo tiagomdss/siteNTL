@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" :class="scrolled ? 'backdrop-blur-2xl bg-black/40 shadow-2xl border-b border-white/10' : 'bg-transparent'">
+  <nav class="fixed top-0 left-0 right-0 z-50 navbar-custom" :class="{ 'scrolled': scrolled }">
     <div class="container mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
         <!-- Logo -->
@@ -80,3 +80,35 @@ onMounted(() => {
   })
 })
 </script>
+
+<style scoped>
+.navbar-custom {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  will-change: background-color, backdrop-filter, box-shadow;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-custom::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95), rgba(10, 10, 10, 0.9));
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.navbar-custom.scrolled::before {
+  opacity: 1;
+}
+
+.navbar-custom.scrolled {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+</style>
