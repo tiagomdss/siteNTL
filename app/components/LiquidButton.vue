@@ -33,7 +33,8 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .btn-liquid.secondary {
-  @apply bg-gradient-to-r from-dark-700 to-dark-600;
+  @apply bg-gradient-to-r from-gray-200 to-gray-300 text-gray-900;
+  @apply dark:from-dark-700 dark:to-dark-600 dark:text-white;
 }
 
 .btn-liquid.outline {

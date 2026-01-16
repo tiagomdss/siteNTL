@@ -21,7 +21,8 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .card-liquid.strong {
-  @apply bg-gradient-to-br from-white/10 to-white/20;
-  @apply backdrop-blur-xl border-white/20;
+  @apply bg-gradient-to-br from-white/80 to-white/90 border-gray-200 shadow-lg;
+  @apply dark:from-white/10 dark:to-white/20 dark:border-white/20 dark:shadow-none;
+  @apply backdrop-blur-xl;
 }
 </style>
