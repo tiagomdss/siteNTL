@@ -165,7 +165,7 @@
 
             <!-- Actions -->
             <div class="flex gap-4">
-              <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
+              <button @click="openModal(job)" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
                 Candidatar-se
               </button>
               <button class="p-2 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
@@ -278,11 +278,183 @@
         </div>
       </div>
     </section>
+
+    <Teleport to="body">
+    <Transition name="modal">
+      <div v-if="showModal" class="fixed inset-0 z-[9999] flex items-center justify-center p-4" @click.self="closeModal">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+        <!-- Modal Content -->
+        <div class="relative bg-white dark:bg-gray-900 rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-200 dark:border-gray-700">
+          <!-- Header -->
+          <div class="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6 py-4 rounded-t-2xl flex justify-between items-center z-10">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">Candidatar-se</h3>
+              <p v-if="selectedJob" class="text-sm text-blue-600 dark:text-blue-400 mt-0.5">{{ selectedJob.title }}</p>
+            </div>
+            <button @click="closeModal" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400 transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+          </div>
+
+          <!-- Form -->
+          <form class="p-6 space-y-5" @submit.prevent="submitApplication">
+            <div class="flex justify-end">
+              <span class="text-xs text-gray-500 dark:text-gray-400">* Campos obrigatórios</span>
+            </div>
+
+            <!-- Nome Completo -->
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nome Completo *</label>
+              <input v-model="form.name" type="text" required class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl p-3 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" placeholder="Seu nome" />
+            </div>
+
+            <!-- Email Profissional -->
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Profissional *</label>
+              <input v-model="form.email" type="email" required class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl p-3 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" placeholder="seu@email.com" />
+            </div>
+
+            <!-- LinkedIn URL -->
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">LinkedIn URL</label>
+              <input v-model="form.linkedin" type="text" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl p-3 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" placeholder="linkedin.com/in/voce" />
+            </div>
+
+            <!-- Área de Interesse -->
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Área de Interesse *</label>
+              <div class="relative">
+                <select v-model="form.area" required class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl p-3 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none appearance-none transition-all">
+                  <option value="" disabled>Selecione...</option>
+                  <option>Engenharia</option>
+                  <option>Produto</option>
+                  <option>Design</option>
+                  <option>Vendas</option>
+                  <option>Infraestrutura</option>
+                  <option>Administrativo</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Currículo Upload -->
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Currículo (PDF ou DOCX) *</label>
+              <div
+                class="border-2 border-dashed rounded-xl p-6 text-center transition-colors cursor-pointer"
+                :class="isDragging ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-gray-300 dark:border-gray-600 bg-gray-50/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800'"
+                @click="$refs.fileInput.click()"
+                @dragover.prevent="isDragging = true"
+                @dragleave.prevent="isDragging = false"
+                @drop.prevent="handleDrop"
+              >
+                <input ref="fileInput" type="file" accept=".pdf,.docx" class="hidden" @change="handleFileSelect" />
+                <template v-if="!form.file">
+                  <svg class="w-8 h-8 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                  <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Clique para selecionar ou arraste aqui</p>
+                  <p class="text-xs text-gray-500 mt-1">Maximum 10MB</p>
+                </template>
+                <template v-else>
+                  <div class="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <span class="text-sm font-medium">{{ form.file.name }}</span>
+                    <button type="button" @click.stop="form.file = null" class="ml-2 text-red-500 hover:text-red-600">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-1">{{ (form.file.size / 1024 / 1024).toFixed(2) }} MB</p>
+                </template>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="pt-2">
+              <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl transition-colors shadow-lg shadow-blue-600/20">
+                Enviar Candidatura
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </Transition>
+  </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
 const searchQuery = ref('')
+const showModal = ref(false)
+const selectedJob = ref<any>(null)
+const isDragging = ref(false)
+const fileInput = ref<HTMLInputElement | null>(null)
+
+const form = reactive({
+  name: '',
+  email: '',
+  linkedin: '',
+  area: '',
+  file: null as File | null
+})
+
+const openModal = (job: any) => {
+  selectedJob.value = job
+  form.area = job.department
+  showModal.value = true
+  document.body.style.overflow = 'hidden'
+}
+
+const closeModal = () => {
+  showModal.value = false
+  document.body.style.overflow = ''
+}
+
+const handleFileSelect = (e: Event) => {
+  const target = e.target as HTMLInputElement
+  if (target.files && target.files[0]) {
+    const file = target.files[0]
+    if (file.size > 10 * 1024 * 1024) {
+      alert('O arquivo deve ter no máximo 10MB.')
+      return
+    }
+    form.file = file
+  }
+}
+
+const handleDrop = (e: DragEvent) => {
+  isDragging.value = false
+  if (e.dataTransfer?.files && e.dataTransfer.files[0]) {
+    const file = e.dataTransfer.files[0]
+    if (file.size > 10 * 1024 * 1024) {
+      alert('O arquivo deve ter no máximo 10MB.')
+      return
+    }
+    const ext = file.name.split('.').pop()?.toLowerCase()
+    if (ext !== 'pdf' && ext !== 'docx') {
+      alert('Apenas arquivos PDF ou DOCX são aceitos.')
+      return
+    }
+    form.file = file
+  }
+}
+
+const submitApplication = () => {
+  if (!form.file) {
+    alert('Por favor, anexe seu currículo.')
+    return
+  }
+  alert(`Candidatura enviada com sucesso para a vaga de ${selectedJob.value?.title}!`)
+  closeModal()
+  // Reset form
+  form.name = ''
+  form.email = ''
+  form.linkedin = ''
+  form.area = ''
+  form.file = null
+}
 
 const jobs = [
   {
@@ -351,3 +523,24 @@ const filteredJobs = computed(() => {
   )
 })
 </script>
+
+<style scoped>
+.modal-enter-active {
+  transition: all 0.3s ease-out;
+}
+.modal-leave-active {
+  transition: all 0.2s ease-in;
+}
+.modal-enter-from {
+  opacity: 0;
+}
+.modal-enter-from > div:last-child {
+  transform: scale(0.95) translateY(10px);
+}
+.modal-leave-to {
+  opacity: 0;
+}
+.modal-leave-to > div:last-child {
+  transform: scale(0.95) translateY(10px);
+}
+</style>

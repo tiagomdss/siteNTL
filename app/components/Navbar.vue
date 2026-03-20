@@ -4,12 +4,11 @@
       <div class="flex items-center justify-between">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center space-x-3 group">
-          <img src="/img/Marca NTL Branca.png" alt="NTL Logo" class="h-12 transform group-hover:scale-110 transition-transform duration-300 hidden dark:block" />
-          <img src="/img/logo-escura.png" alt="NTL Logo" class="h-12 transform group-hover:scale-110 transition-transform duration-300 dark:hidden block" />
+          <img src="/img/Marca NTL Branca.png" alt="NTL Logo" class="h-12 transform group-hover:scale-110 transition-all duration-300 drop-shadow-[0_0_0px_rgba(0,0,0,0.8)] dark:drop-shadow-none" />
         </NuxtLink>
 
         <!-- Desktop Navigation Items -->
-        <div class="hidden md:flex items-center gap-8">
+        <div class="hidden lg:flex items-center gap-8">
           <!-- Main Menu -->
           <div v-for="item in menuItems" :key="item.name" class="relative group">
             <NuxtLink 
@@ -65,7 +64,7 @@
         <!-- Mobile Menu Button -->
         <button 
           @click="mobileMenuOpen = !mobileMenuOpen"
-          class="md:hidden p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-gray-700 dark:text-white"
+          class="lg:hidden p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-gray-700 dark:text-white"
         >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path v-if="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -83,7 +82,7 @@
         leave-from-class="opacity-100 scale-100"
         leave-to-class="opacity-0 scale-95"
       >
-        <div v-if="mobileMenuOpen" class="md:hidden mt-4 bg-white dark:bg-gray-950 rounded-2xl p-4 space-y-2 border border-gray-200 dark:border-white/10 shadow-xl dark:shadow-2xl">
+        <div v-if="mobileMenuOpen" class="lg:hidden mt-4 bg-white dark:bg-gray-950 rounded-2xl p-4 space-y-2 border border-gray-200 dark:border-white/10 shadow-xl dark:shadow-2xl">
           <NuxtLink 
             v-for="item in menuItems" 
             :key="item.name"

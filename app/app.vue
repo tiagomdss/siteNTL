@@ -1,5 +1,9 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+  <div>
+    <!-- Loading Screen -->
+    <GlobalLoader :loading="isLoading" />
+
+    <div class="min-h-screen bg-gray-50 dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
     <!-- Navbar Component -->
     <Navbar />
 
@@ -27,8 +31,7 @@
           <!-- Company Info -->
           <div class="col-span-1 md:col-span-2">
             <div class="flex items-center space-x-3 mb-4">
-              <img src="/img/Marca NTL Branca.png" alt="NTL Logo" class="h-10 hidden dark:block" />
-              <img src="/img/logo-escura.png" alt="NTL Logo" class="h-10 block dark:hidden" />
+              <img src="/img/Marca NTL Branca.png" alt="NTL Logo" class="h-10 drop-shadow-[0_0_8px_rgba(0,0,0,0.8)] dark:drop-shadow-none" />
             </div>
             <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
               Há mais de 30 anos oferecendo soluções sob medida para a performance de sua empresa.
@@ -82,15 +85,26 @@
         </div>
       </div>
     </footer>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 const showScrollTop = ref(false)
+const isLoading = ref(true)
 const { initTheme } = useTheme()
 
 onMounted(() => {
   initTheme()
+})
+
+// Hide loading screen after page is fully ready
+onMounted(() => {
+  nextTick(() => {
+    setTimeout(() => {
+      isLoading.value = false
+    }, 800)
+  })
 })
 
 const menuItems = [
@@ -114,3 +128,5 @@ onMounted(() => {
   })
 })
 </script>
+
+
