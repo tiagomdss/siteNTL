@@ -1,11 +1,9 @@
-// mssql usa CommonJS - usando createRequire para compatibilidade ESM
-import { createRequire } from 'module'
-const require = createRequire(import.meta.url)
-const sql = require('mssql')
+// @ts-ignore - mssql é CJS, o Nitro trata como externo (externals config)
+import sql from 'mssql'
 
-const dbConfig = {
-  user: process.env.DB_USER || 'sa',
-  password: process.env.DB_PASSWORD || '',
+const getConfig = () => ({
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   server: process.env.DB_SERVER || '',
   port: Number(process.env.DB_PORT) || 1433,
   database: process.env.DB_NAME || 'stc',
@@ -13,15 +11,15 @@ const dbConfig = {
     encrypt: false,
     trustServerCertificate: true
   },
-  requestTimeout: 15000,
-  connectionTimeout: 10000
-}
+  requestTimeout: 20000,
+  connectionTimeout: 15000
+})
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
   let pool: any = null
 
   try {
-    pool = await sql.connect(dbConfig)
+    pool = await sql.connect(getConfig())
 
     const result = await pool.request().query(`
       SELECT 
@@ -50,10 +48,14 @@ export default defineEventHandler(async () => {
       cargo: vaga.cargo ?? null
     }))
   } catch (error: any) {
-    console.error('[API /vagas] Erro ao buscar vagas do STC:', error.message)
+    // Loga o erro real nos logs do Vercel para facilitar debug
+    console.error('[API /vagas] Erro:', error.message)
+    console.error('[API /vagas] Stack:', error.stack)
+    console.error('[API /vagas] Config server:', process.env.DB_SERVER, 'port:', process.env.DB_PORT)
+
     throw createError({
       statusCode: 500,
-      statusMessage: 'Erro ao buscar vagas do banco de dados'
+      statusMessage: `Erro ao buscar vagas: ${error.message}`
     })
   } finally {
     if (pool) {
