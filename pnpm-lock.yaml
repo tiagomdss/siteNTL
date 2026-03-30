@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@vercel/speed-insights':
+        specifier: ^2.0.0
+        version: 2.0.0(nuxt@4.1.3(@azure/identity@4.13.1)(@parcel/watcher@2.5.1)(@types/node@25.5.0)(@vue/compiler-sfc@3.5.22)(db0@0.3.4)(ioredis@5.8.2)(magicast@0.3.5)(rollup@4.52.5)(terser@5.44.0)(vite@7.1.12(@types/node@25.5.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))(yaml@2.8.1))(vue-router@4.6.3(vue@3.5.22))(vue@3.5.22)
       mssql:
         specifier: ^12.2.1
         version: 12.2.1(@azure/core-client@1.10.1)
@@ -1136,6 +1139,32 @@ packages:
     resolution: {integrity: sha512-UEq+eF0ocEf9WQCV1gktxKhha36KDs7jln5qii6UpPf5clMqDc0p3E7d9l2Smx0i9Pm1qpq4S4lLfNl97bbv6w==}
     engines: {node: '>=18'}
     hasBin: true
+
+  '@vercel/speed-insights@2.0.0':
+    resolution: {integrity: sha512-jwkNcrTeafWxjmWq4AHBaptSqZiJkYU5adLC9QBSqeim0GcqDMgN5Ievh8OG1rJ6W3A4l1oiP7qr9CWxGuzu3w==}
+    peerDependencies:
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      nuxt: '>= 3'
+      react: ^18 || ^19 || ^19.0.0-rc
+      svelte: '>= 4'
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      nuxt:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
 
   '@vitejs/plugin-vue-jsx@5.1.1':
     resolution: {integrity: sha512-uQkfxzlF8SGHJJVH966lFTdjM/lGcwJGzwAHpVqAPDD/QcsqoUGa+q31ox1BrUfi+FLP2ChVp7uLXE3DkHyDdQ==}
@@ -4935,6 +4964,12 @@ snapshots:
       - encoding
       - rollup
       - supports-color
+
+  '@vercel/speed-insights@2.0.0(nuxt@4.1.3(@azure/identity@4.13.1)(@parcel/watcher@2.5.1)(@types/node@25.5.0)(@vue/compiler-sfc@3.5.22)(db0@0.3.4)(ioredis@5.8.2)(magicast@0.3.5)(rollup@4.52.5)(terser@5.44.0)(vite@7.1.12(@types/node@25.5.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))(yaml@2.8.1))(vue-router@4.6.3(vue@3.5.22))(vue@3.5.22)':
+    optionalDependencies:
+      nuxt: 4.1.3(@azure/identity@4.13.1)(@parcel/watcher@2.5.1)(@types/node@25.5.0)(@vue/compiler-sfc@3.5.22)(db0@0.3.4)(ioredis@5.8.2)(magicast@0.3.5)(rollup@4.52.5)(terser@5.44.0)(vite@7.1.12(@types/node@25.5.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))(yaml@2.8.1)
+      vue: 3.5.22
+      vue-router: 4.6.3(vue@3.5.22)
 
   '@vitejs/plugin-vue-jsx@5.1.1(vite@7.1.12(@types/node@25.5.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22)':
     dependencies:

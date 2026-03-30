@@ -5,7 +5,7 @@ export default defineNuxtConfig({
 
   srcDir: 'app/',
 
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss', '@vercel/speed-insights'],
 
   css: ['~/assets/css/main.css'],
 
