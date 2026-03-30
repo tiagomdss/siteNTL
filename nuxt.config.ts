@@ -9,6 +9,13 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  // Impede que o Nitro/Rollup faça bundle do mssql (pacote CJS nativo)
+  nitro: {
+    externals: {
+      external: ['mssql', 'tedious']
+    }
+  },
+
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
