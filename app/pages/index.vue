@@ -10,30 +10,93 @@
       
       <!-- Content -->
       <div class="container mx-auto px-6 relative z-10">
-        <div class="max-w-3xl">
-          <div class="inline-block px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider mb-6">
-            SOLUÇÕES EM TECNOLOGIA
-          </div>
-          
-          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-gray-900 dark:text-white">
-            Soluções sob medida para a
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-600 block">performance</span>
-            de sua empresa.
-          </h1>
-          
-          <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-2xl leading-relaxed">
-            Tecnologia de ponta e excelência humana unidas para transformar o futuro do seu negócio.
-          </p>
-          
-          <div class="flex flex-col sm:flex-row gap-4">
-            <button class="px-8 py-4 bg-[#FF6B00] hover:bg-[#ff8534] text-white rounded-lg font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-orange-500/20 dark:shadow-orange-900/20">
-              Conheça nossas soluções
-            </button>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Left: Text -->
+          <div>
+            <div class="inline-block px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider mb-6">
+              SOLUÇÕES EM TECNOLOGIA
+            </div>
             
-            <a href="#empresa" class="px-8 py-4 bg-white/50 hover:bg-white/80 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-lg font-bold transition-all backdrop-blur-sm flex items-center justify-center gap-2 group">
-              Fale com um especialista
-              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </a>
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-gray-900 dark:text-white">
+              Soluções sob medida para a
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-600 block">performance</span>
+              de sua empresa.
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-2xl leading-relaxed">
+              Tecnologia de ponta e excelência humana unidas para transformar o futuro do seu negócio.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button class="px-8 py-4 bg-[#FF6B00] hover:bg-[#ff8534] text-white rounded-lg font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-orange-500/20 dark:shadow-orange-900/20">
+                Conheça nossas soluções
+              </button>
+              <a href="#empresa" class="px-8 py-4 bg-white/50 hover:bg-white/80 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-lg font-bold transition-all backdrop-blur-sm flex items-center justify-center gap-2 group">
+                Fale com um especialista
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Card de Vagas -->
+          <div class="hidden lg:block">
+            <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200/60 dark:border-white/10 overflow-hidden">
+              <!-- Card Header -->
+              <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-white/5">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                  <span class="font-bold text-gray-900 dark:text-white text-sm">Vagas Abertas</span>
+                </div>
+                <NuxtLink to="/vagas" class="text-xs text-blue-600 dark:text-blue-400 font-semibold hover:underline">
+                  Ver todas →
+                </NuxtLink>
+              </div>
+
+              <!-- Card Body -->
+              <div class="divide-y divide-gray-100 dark:divide-white/5">
+                <!-- Loading skeleton -->
+                <template v-if="vagasPending">
+                  <div v-for="i in 4" :key="i" class="px-5 py-4 flex items-center gap-3 animate-pulse">
+                    <div class="w-8 h-8 rounded-lg bg-gray-200 dark:bg-gray-700 shrink-0"></div>
+                    <div class="flex-1">
+                      <div class="h-3.5 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
+                      <div class="h-3 bg-gray-100 dark:bg-gray-800 rounded w-1/2"></div>
+                    </div>
+                  </div>
+                </template>
+
+                <!-- Sem vagas -->
+                <div v-else-if="!vagasHome.length" class="px-5 py-8 text-center text-gray-500 dark:text-gray-400 text-sm">
+                  Nenhuma vaga ativa no momento.
+                </div>
+
+                <!-- Lista de vagas reais -->
+                <NuxtLink
+                  v-else
+                  v-for="vaga in vagasHome"
+                  :key="vaga.codigo"
+                  to="/vagas"
+                  class="flex items-center gap-3 px-5 py-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group/item"
+                >
+                  <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0 group-hover/item:bg-blue-200 dark:group-hover/item:bg-blue-800/40 transition-colors">
+                    <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white truncate group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors">{{ vaga.nomeVaga }}</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">{{ vaga.cargo || 'Geral' }}</p>
+                  </div>
+                  <svg class="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover/item:text-blue-500 group-hover/item:translate-x-0.5 transition-all shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </NuxtLink>
+              </div>
+
+              <!-- Card Footer -->
+              <div class="px-5 py-3 bg-gray-50 dark:bg-white/5 border-t border-gray-100 dark:border-white/5">
+                <NuxtLink to="/vagas" class="w-full flex items-center justify-center gap-2 text-sm font-semibold text-[#FF6B00] hover:text-[#ff8534] transition-colors">
+                  Candidatar-se agora
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </NuxtLink>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -401,22 +464,40 @@
                    </NuxtLink>
                 </div>
 
-                <!-- Mini Vagas List -->
-                <div class="space-y-4 w-full md:w-auto min-w-[300px]">
-                  <div class="flex justify-between items-center bg-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors cursor-pointer border border-white/10">
-                    <div>
-                      <h4 class="text-white font-bold">Desenvolvedor Mobile</h4>
-                      <p class="text-white/70 text-sm">Rio de Janeiro, RJ</p>
+                <!-- Mini Vagas List — dados reais do banco STC -->
+                <div class="space-y-3 w-full md:w-auto min-w-[300px]">
+                  <!-- Loading -->
+                  <template v-if="vagasPending">
+                    <div v-for="i in 3" :key="i" class="bg-white/10 p-4 rounded-xl border border-white/10 animate-pulse">
+                      <div class="h-4 bg-white/20 rounded w-3/4 mb-2"></div>
+                      <div class="h-3 bg-white/10 rounded w-1/2"></div>
                     </div>
-                    <svg class="w-5 h-5 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                  </template>
+
+                  <!-- Sem vagas -->
+                  <div v-else-if="!vagasHome.length" class="bg-white/10 p-4 rounded-xl border border-white/10 text-center">
+                    <p class="text-white/70 text-sm">Nenhuma vaga ativa no momento.</p>
                   </div>
-                  <div class="flex justify-between items-center bg-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors cursor-pointer border border-white/10">
-                    <div>
-                      <h4 class="text-white font-bold">Analista de Suporte</h4>
-                      <p class="text-white/70 text-sm">Remoto</p>
+
+                  <!-- Lista de vagas reais -->
+                  <NuxtLink
+                    v-else
+                    v-for="vaga in vagasHome"
+                    :key="vaga.codigo"
+                    to="/vagas"
+                    class="flex justify-between items-center bg-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors border border-white/10 group/item block"
+                  >
+                    <div class="min-w-0 flex-1">
+                      <h4 class="text-white font-bold text-sm truncate">{{ vaga.nomeVaga }}</h4>
+                      <p class="text-white/70 text-xs mt-0.5">{{ vaga.cargo || 'Geral' }}</p>
                     </div>
-                    <svg class="w-5 h-5 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                  </div>
+                    <svg class="w-4 h-4 text-white/50 group-hover/item:text-white group-hover/item:translate-x-1 transition-all shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                  </NuxtLink>
+
+                  <!-- Ver todas -->
+                  <NuxtLink v-if="vagasHome.length" to="/vagas" class="block text-center text-white/60 hover:text-white text-xs py-2 transition-colors">
+                    Ver todas as vagas →
+                  </NuxtLink>
                 </div>
               </div>
             </div>
@@ -446,6 +527,21 @@
 </template>
 
 <script setup lang="ts">
+
+interface VagaHome {
+  codigo: number
+  nomeVaga: string
+  cargo: string | null
+}
+
+// Busca vagas reais do banco STC para exibir no card da home
+const { data: vagasData, pending: vagasPending } = await useFetch<VagaHome[]>('/api/vagas', {
+  default: () => []
+})
+
+// Mostra até 4 vagas no card da home
+const vagasHome = computed(() => (vagasData.value ?? []).slice(0, 4))
+
 const solutions = [
   {
     title: 'Tecnologia da Informação',
