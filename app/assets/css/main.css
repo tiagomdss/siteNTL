@@ -109,6 +109,29 @@
   transform: translateY(4px);
 }
 
+/* Nas páginas internas o hero sobe por trás da navbar transparente.
+   O espaço de 80px continua existindo dentro do próprio hero, evitando
+   a faixa separada que parecia se mover sob o menu durante a rolagem. */
+main > div.min-h-screen.pt-20 {
+  padding-top: 0 !important;
+}
+
+main > div.min-h-screen.pt-20 > section:first-child > .relative.mx-auto {
+  padding-top: 9rem !important;
+}
+
+@media (min-width: 768px) {
+  main > div.min-h-screen.pt-20 > section:first-child > .relative.mx-auto {
+    padding-top: 10rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  main > div.min-h-screen.pt-20 > section:first-child > .relative.mx-auto {
+    padding-top: 11rem !important;
+  }
+}
+
 /* Hero da home: tablets e celulares sempre empilham texto + vagas.
    Isso evita que telas móveis em landscape/device-scale acabem entrando
    na composição desktop e empurrem o card de oportunidades para fora. */
