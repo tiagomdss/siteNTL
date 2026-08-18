@@ -1,115 +1,170 @@
 <template>
-  <div class="overflow-x-hidden min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
-    <!-- Hero Section -->
-    <section class="relative py-24 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-white/5 transition-colors">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-gradient-to-r from-gray-50 via-gray-50/95 to-gray-50/40 dark:from-gray-950 dark:via-gray-900/95 dark:to-gray-900/40"></div>
-      </div>
-
-      <div class="container mx-auto px-6 relative z-10 text-center">
-        <div class="inline-flex items-center gap-2 mb-6 bg-blue-500/10 px-4 py-2 rounded-full border border-blue-500/20">
-          <span class="text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider">PORTFÓLIO COMPLETO</span>
-        </div>
-        
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-          Nossos <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-600">Projetos</span>
+  <div class="min-h-screen bg-white pt-20 dark:bg-[#06182f]">
+    <section class="relative overflow-hidden border-b border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-[#051426]">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_75%_15%,rgba(52,127,246,.16),transparent_38%)]" />
+      <div class="relative mx-auto max-w-7xl px-5 py-16 sm:px-6 md:py-20 lg:px-8 lg:py-24">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">Experiência em campo</p>
+        <h1 class="mt-4 max-w-4xl text-5xl font-bold leading-[1.04] tracking-[-0.045em] text-[#071b35] dark:text-white sm:text-6xl">
+          Projetos que mostram a escala da NTL.
         </h1>
-        
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Explore detalhadamente como entregamos inovação e resultados através de nossas áreas de atuação.
+        <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+          Uma seleção do histórico de operações em tecnologia, desenvolvimento, service desk, teleatendimento e apoio administrativo para organizações públicas e privadas.
         </p>
       </div>
     </section>
 
-    <!-- Projects Grid -->
-    <section class="py-24">
-      <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 gap-16">
-          <div v-for="(projeto, i) in projetos" :key="i" class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-8 md:p-12 hover:border-blue-500/30 transition-all shadow-xl dark:shadow-none flex flex-col md:flex-row gap-12 items-start">
-            
-            <!-- Icon/Header -->
-            <div class="w-full md:w-1/3 flex flex-col items-center md:items-start text-center md:text-left">
-              <div class="w-20 h-20 bg-blue-500/10 dark:bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6 text-blue-600 dark:text-blue-500">
-                 <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" :d="projeto.icon"></path></svg>
+    <section class="py-16 sm:py-20 lg:py-24">
+      <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div class="grid gap-5 lg:grid-cols-2">
+          <article v-for="area in projectAreas" :key="area.title" class="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
+            <div class="flex items-start justify-between gap-6">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.16em] text-primary-600 dark:text-primary-300">{{ area.eyebrow }}</p>
+                <h2 class="mt-3 text-2xl font-bold text-[#071b35] dark:text-white sm:text-3xl">{{ area.title }}</h2>
               </div>
-              <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">{{ projeto.title }}</h3>
-              <p class="text-gray-500 dark:text-gray-400">{{ projeto.description || 'Soluções especializadas para sua empresa.' }}</p>
+              <div class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#0b2345] text-sm font-black text-white dark:bg-white dark:text-[#071b35]">{{ area.code }}</div>
             </div>
 
-            <!-- Details List -->
-            <div class="w-full md:w-2/3">
-              <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-800 pb-2">Áreas de Atuação</h4>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div v-for="(line, idx) in projeto.lines" :key="idx" class="flex items-start gap-3 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors">
-                  <svg class="w-5 h-5 text-[#FF6B00] flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                  <span class="text-gray-700 dark:text-gray-300 font-medium">{{ line }}</span>
+            <p class="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">{{ area.description }}</p>
+
+            <div class="mt-6 space-y-3">
+              <details v-for="project in area.projects" :key="project.name" class="group rounded-2xl border border-slate-200 bg-slate-50 p-4 open:bg-white dark:border-white/10 dark:bg-white/5 dark:open:bg-white/[.07]">
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-[#071b35] dark:text-white">
+                  <span>{{ project.name }}</span>
+                  <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-slate-200 text-slate-500 transition group-open:rotate-45 dark:border-white/10 dark:text-slate-300">+</span>
+                </summary>
+                <div class="mt-4 border-t border-slate-200 pt-4 dark:border-white/10">
+                  <ul class="space-y-2">
+                    <li v-for="item in project.items" :key="item" class="flex gap-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                      <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-500" />
+                      {{ item }}
+                    </li>
+                  </ul>
                 </div>
-              </div>
+              </details>
             </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
+    <section class="border-y border-slate-200 bg-slate-50 py-16 dark:border-white/10 dark:bg-[#051426] sm:py-20">
+      <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">Capacidade multidisciplinar</p>
+            <h2 class="mt-4 text-4xl font-bold tracking-[-0.035em] text-[#071b35] dark:text-white">Do usuário ao datacenter. Do processo ao software.</h2>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <div v-for="item in capabilities" :key="item" class="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm font-semibold text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">{{ item }}</div>
           </div>
         </div>
       </div>
     </section>
-    
-    <!-- CTA -->
-    <section class="py-24 bg-gray-900 relative overflow-hidden">
-      <div class="absolute inset-0 bg-[#FF6B00]/10"></div>
-      <div class="container mx-auto px-6 text-center relative z-10">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Tem um projeto em mente?</h2>
-        <NuxtLink to="/contato" class="inline-flex items-center gap-2 px-8 py-4 bg-[#FF6B00] hover:bg-[#ff8534] text-white rounded-full font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-orange-900/20">
-          Fale com nossos especialistas
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-        </NuxtLink>
+
+    <section class="py-16 sm:py-20 lg:py-24">
+      <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div class="overflow-hidden rounded-[2rem] bg-[#0b2345] px-6 py-12 text-white sm:px-10 lg:flex lg:items-center lg:justify-between lg:gap-10 lg:px-14">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary-200">Próximo projeto</p>
+            <h2 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Conte o desafio. A NTL desenha a operação.</h2>
+            <p class="mt-4 max-w-2xl text-base leading-7 text-slate-200">Podemos combinar tecnologia, pessoas e processos de acordo com o escopo, a criticidade e o nível de serviço necessário.</p>
+          </div>
+          <NuxtLink to="/contato" class="mt-7 inline-flex shrink-0 rounded-full bg-white px-7 py-4 font-bold text-[#071b35] transition hover:-translate-y-0.5 lg:mt-0">Fale com nossos especialistas</NuxtLink>
+        </div>
       </div>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-const projetos = [
+useHead({
+  title: 'Projetos e Cases | NTL - Nova Tecnologia',
+  meta: [
+    { name: 'description', content: 'Conheça projetos e experiências da NTL em tecnologia, software, service desk, teleatendimento e facilities.' }
+  ]
+})
+
+const projectAreas = [
   {
-    title: 'Tecnologia da Informação - TIC',
-    description: 'Gestão completa e integrada para sua infraestrutura tecnológica.',
-    lines: ['Gestão de Infraestrutura de TI', 'Serviço e assistências técnicas', 'Monitoramento 24/7 de ambientes', 'Segurança da Informação e Cyber Security', 'Consultoria em Cloud Computing', 'Virtualização de Servidores'],
-    icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+    eyebrow: 'Tecnologia da Informação',
+    title: 'Infraestrutura e suporte',
+    code: 'TI',
+    description: 'Suporte de usuários, parque de microinformática, redes, instalações e sustentação de ambientes corporativos.',
+    projects: [
+      { name: 'HP - parceria de serviços', items: ['Histórico de mais de duzentos contratos de serviços', 'Atendimento em território nacional', 'Operações com diferentes níveis de serviço e escalas', 'Suporte de hardware e software para grandes clientes corporativos'] },
+      { name: 'Defesa Civil do Estado do Rio de Janeiro', items: ['Suporte ao parque de microinformática', 'Suporte de hardware e software aos usuários', 'Sustentação da infraestrutura tecnológica local'] },
+      { name: 'INCA', items: ['Suporte ao parque de microinformática', 'Atendimento de hardware aos usuários', 'Técnicos alocados e cobertura de peças'] },
+      { name: 'ANS', items: ['Cabeamento de rede de dados e voz', 'Instalação e movimentação de pontos', 'Manutenção de telefonia e infraestrutura de rede'] }
+    ]
   },
   {
-    title: 'Teleatendimentos',
-    description: 'Comunicação eficiente e omnichannel para seus clientes.',
-    lines: ['Service desk especializado (N1, N2, N3)', 'Call center receptivo e ativo', 'Atendimento via Chat e WhatsApp', 'Sistemas de CRM integrados', 'Auditoria de qualidade de atendimento'],
-    icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z'
+    eyebrow: 'Gestão de serviços',
+    title: 'Service Desk',
+    code: 'SD',
+    description: 'Centrais de atendimento estruturadas para incidentes, requisições, SLAs e ambientes com grande volume de usuários.',
+    projects: [
+      { name: 'Operação HP', items: ['70 posições em operação 24x7', 'Atendimento a diferentes níveis de serviço', 'Incidentes de hardware, software e requisições'] },
+      { name: 'IPHAN', items: ['Atendimento a incidentes e requisições', 'Uso de práticas ITIL', 'Operação para aproximadamente 300 usuários'] },
+      { name: 'LNCC', items: ['Suporte de hardware e software', 'Uso de práticas ITIL', 'Atendimento a centenas de usuários e solicitações mensais'] },
+      { name: 'IBM / Souza Cruz', items: ['Outsourcing de atendimento', 'Operação com práticas ITIL', 'Suporte a ambiente com milhares de usuários'] }
+    ]
   },
   {
-    title: 'Apoio Administrativo',
-    description: 'Otimização de processos e foco no seu core business.',
-    lines: ['Facilities Management', 'Terceirização de processos (BPO)', 'Gestão eletrônica de documentos (GED)', 'Alocação de profissionais administrativos', 'Limpeza e conservação predial'],
-    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z'
+    eyebrow: 'Centrais de atendimento',
+    title: 'Teleatendimento',
+    code: 'TA',
+    description: 'Equipes de atendimento e supervisão dimensionadas para operações públicas e privadas, incluindo escalas contínuas.',
+    projects: [
+      { name: 'MPRJ', items: ['Operação de teleatendimento com equipe dedicada', 'Estrutura de supervisão e atendimento'] },
+      { name: 'Fiocruz', items: ['Equipe de supervisão', 'Dezenas de posições de atendimento'] },
+      { name: 'Hospital Naval Marcílio Dias', items: ['Supervisão dedicada', 'Teleatendimento em escala 24x7'] },
+      { name: 'IBGE', items: ['Estrutura de supervisão para equipes de atendimento', 'Operação vinculada a projetos de grande alcance'] }
+    ]
   },
   {
-    title: 'Fábrica de Softwares',
-    description: 'Desenvolvimento ágil e soluções digitais sob medida.',
-    lines: ['Programação e análise de sistemas', 'Desenvolvimento de Apps Mobile', 'Integração de APIs e Microsserviços', 'Modernização de sistemas legados', 'QA e Testes Automatizados'],
-    icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
+    eyebrow: 'Engenharia de sistemas',
+    title: 'Fábrica de Software',
+    code: '</>',
+    description: 'Análise, desenvolvimento, sustentação e modernização de sistemas com equipes multidisciplinares.',
+    projects: [
+      { name: 'TJERJ', items: ['Fábrica de software', 'Equipes com analistas, programadores, gerentes e supervisores'] },
+      { name: 'TRF da 3ª Região', items: ['Fábrica de software', 'Equipe de análise e desenvolvimento de sistemas'] },
+      { name: 'IBGE', items: ['Fábrica de software', 'Analistas e programadores dedicados'] },
+      { name: 'Defesa Civil RJ', items: ['Análise e desenvolvimento de sistemas específicos', 'Desenvolvimento e manutenção de portal corporativo', 'Manutenção e evolução de sistemas legados'] }
+    ]
   },
   {
-    title: 'Transformação Digital',
-    description: 'Conduzindo sua empresa para a era digital.',
-    lines: ['Consultoria para PMEs', 'Gestão e operação "Digital"', 'Migração para ambientes Nuvem', 'Automação de processos (RPA)', 'Marketing Digital e Presença Online'],
-    icon: 'M13 10V3L4 14h7v7l9-11h-7z'
+    eyebrow: 'Facilities',
+    title: 'Apoio administrativo',
+    code: 'FA',
+    description: 'Gestão e cessão de mão de obra para atividades administrativas, operacionais, recepção e apoio especializado.',
+    projects: [
+      { name: 'TJERJ', items: ['Planejamento e monitoramento de fluxo logístico', 'Equipes de compras, almoxarifado e operação', 'Atuação em diferentes localidades do estado'] },
+      { name: 'UFRRJ', items: ['Apoio administrativo e operacional', 'Perfis de escritório, manutenção, recepção e suporte', 'Relatórios de acompanhamento da operação'] },
+      { name: 'Universidade Federal do ABC', items: ['Prestação de serviços de recepção', 'Equipe com recepcionistas e encarregado'] },
+      { name: 'Secretaria de Infraestrutura e Obras do RJ', items: ['Atividades administrativas, técnicas e operacionais', 'Equipes multidisciplinares de apoio e atendimento'] }
+    ]
+  },
+  {
+    eyebrow: 'Operação digital',
+    title: 'Transformação Digital e NEEO',
+    code: 'DX',
+    description: 'Digitalização de rotinas, infraestrutura em nuvem, gestão de pessoas e integração de processos corporativos.',
+    projects: [
+      { name: 'Infraestrutura digital', items: ['Virtualização de servidores', 'Hospedagem e compartilhamento em nuvem', 'Backup hierarquizado e infraestrutura escalável'] },
+      { name: 'Processos digitais', items: ['Operação sem papel', 'Digitalização de documentos', 'Adequação de processos à cultura digital'] },
+      { name: 'NEEO', items: ['Banco de currículos', 'Contratação na web', 'Ponto e documentos na web', 'Gestão e visualização gerencial da operação'] }
+    ]
   }
 ]
 
-useHead({
-  title: 'Projetos Realizados - NTL Nova Tecnologia',
-  meta: [
-    { name: 'description', content: 'Conheça os projetos realizados pela NTL em Tecnologia da Informação, Facilities e Transformação Digital.' }
-  ]
-})
+const capabilities = [
+  'Suporte e sustentação de TI',
+  'Service Desk e teleatendimento',
+  'Fábrica e manutenção de software',
+  'Cloud, virtualização e infraestrutura',
+  'Facilities e alocação de equipes',
+  'Digitalização e gestão operacional'
+]
 </script>
-
-<style scoped>
-.text-transparent {
-  -webkit-text-fill-color: transparent;
-}
-</style>
