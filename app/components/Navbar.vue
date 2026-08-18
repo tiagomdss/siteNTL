@@ -24,12 +24,14 @@
           v-for="item in menuItems"
           :key="item.name"
           :to="item.path"
-          class="rounded-full px-4 py-2 text-sm font-semibold transition"
-          :class="isTransparent
-            ? 'text-white/90 hover:bg-white/10 hover:text-white'
-            : 'text-slate-700 hover:bg-slate-100 hover:text-[#071b35] dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-white'"
+          class="relative rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200"
+          :class="desktopItemClass(item)"
         >
           {{ item.name }}
+          <span
+            class="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left rounded-full transition-transform duration-200"
+            :class="isItemActive(item) ? 'scale-x-100 bg-primary-400' : 'scale-x-0 bg-primary-400 group-hover:scale-x-100'"
+          />
         </NuxtLink>
       </div>
 
@@ -85,7 +87,16 @@
     <Transition name="mobile-menu">
       <div v-if="mobileMenuOpen" class="max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-slate-200/70 bg-white/98 px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-4 shadow-2xl backdrop-blur-xl lg:hidden dark:border-white/10 dark:bg-[#071b35]/98">
         <div class="mx-auto max-w-7xl space-y-1">
-          <NuxtLink v-for="item in menuItems" :key="item.name" :to="item.path" class="block rounded-xl px-4 py-3 font-semibold text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10" @click="mobileMenuOpen = false">
+          <NuxtLink
+            v-for="item in menuItems"
+            :key="item.name"
+            :to="item.path"
+            class="block rounded-xl px-4 py-3 font-semibold transition"
+            :class="isItemActive(item)
+              ? 'bg-primary-50 text-primary-800 dark:bg-white/10 dark:text-white'
+              : 'text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10'"
+            @click="mobileMenuOpen = false"
+          >
             {{ item.name }}
           </NuxtLink>
 
@@ -107,6 +118,8 @@
 <script setup lang="ts">
 import { useTheme } from '@/composables/useTheme'
 
+type MenuItem = { name: string; path: string }
+
 const route = useRoute()
 const scrolled = ref(false)
 const mobileMenuOpen = ref(false)
@@ -116,7 +129,7 @@ const { theme, setTheme } = useTheme()
 
 const isTransparent = computed(() => route.path === '/' && !scrolled.value && !mobileMenuOpen.value)
 
-const menuItems = [
+const menuItems: MenuItem[] = [
   { name: 'Início', path: '/' },
   { name: 'Empresa', path: '/#empresa' },
   { name: 'Soluções', path: '/#solucoes' },
@@ -130,6 +143,24 @@ const themeOptions = [
   { value: 'dark' as const, label: 'Modo escuro', short: 'Escuro' },
   { value: 'system' as const, label: 'Automático', short: 'Auto' }
 ]
+
+const isItemActive = (item: MenuItem) => {
+  const [path, hash] = item.path.split('#')
+  if (hash) return route.path === (path || '/') && route.hash === `#${hash}`
+  if (item.path === '/') return route.path === '/' && !route.hash
+  return route.path === item.path || route.path.startsWith(`${item.path}/`)
+}
+
+const desktopItemClass = (item: MenuItem) => {
+  if (isTransparent.value) {
+    return isItemActive(item)
+      ? 'bg-white/12 text-white'
+      : 'text-white/90 hover:bg-white/10 hover:text-white'
+  }
+  return isItemActive(item)
+    ? 'bg-primary-50 text-primary-800 dark:bg-white/10 dark:text-white'
+    : 'text-slate-700 hover:bg-slate-100 hover:text-[#071b35] dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-white'
+}
 
 const onScroll = () => { scrolled.value = window.scrollY > 32 }
 const onDocumentClick = (event: MouseEvent) => {
