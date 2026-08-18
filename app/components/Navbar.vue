@@ -2,17 +2,15 @@
   <nav
     class="fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300"
     :class="isTransparent
-      ? 'border-b border-transparent bg-transparent text-white shadow-none backdrop-blur-none'
+      ? 'border-b border-transparent bg-transparent shadow-none backdrop-blur-none'
       : 'border-b border-slate-200/80 bg-white/95 text-slate-900 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-[#071b35]/95 dark:text-white'"
   >
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
       <NuxtLink to="/" class="group flex min-w-0 shrink-0 items-center" aria-label="NTL - Início">
-        <img
-          v-if="isTransparent"
-          src="/img/Marca NTL Branca.png"
-          alt="NTL Nova Tecnologia"
-          class="h-9 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.02] sm:h-11 sm:max-w-none"
-        />
+        <template v-if="isTransparent">
+          <img src="/img/Marcas NTL3.png" alt="NTL Nova Tecnologia" class="h-9 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.02] dark:hidden sm:h-11 sm:max-w-none" />
+          <img src="/img/Marca NTL Branca.png" alt="NTL Nova Tecnologia" class="hidden h-9 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.02] dark:block sm:h-11 sm:max-w-none" />
+        </template>
         <template v-else>
           <img src="/img/Marcas NTL3.png" alt="NTL Nova Tecnologia" class="h-9 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.02] dark:hidden sm:h-11 sm:max-w-none" />
           <img src="/img/Marca NTL Branca.png" alt="NTL Nova Tecnologia" class="hidden h-9 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.02] dark:block sm:h-11 sm:max-w-none" />
@@ -24,7 +22,7 @@
           v-for="item in menuItems"
           :key="item.name"
           :to="item.path"
-          class="relative rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200"
+          class="group relative rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200"
           :class="desktopItemClass(item)"
         >
           {{ item.name }}
@@ -40,7 +38,7 @@
           <button
             class="grid h-10 w-10 place-items-center rounded-full border transition"
             :class="isTransparent
-              ? 'border-white/20 bg-transparent text-white hover:bg-white/10'
+              ? 'border-slate-700/20 bg-transparent text-[#071b35] hover:bg-slate-900/5 dark:border-white/20 dark:text-white dark:hover:bg-white/10'
               : 'border-slate-200 bg-white text-slate-700 hover:border-primary-300 hover:text-primary-700 dark:border-white/10 dark:bg-white/5 dark:text-white'"
             aria-label="Alterar tema"
             @click="themeMenuOpen = !themeMenuOpen"
@@ -64,7 +62,7 @@
           to="/contato"
           class="rounded-full px-5 py-2.5 text-sm font-bold transition hover:-translate-y-0.5"
           :class="isTransparent
-            ? 'border border-white/25 bg-transparent text-white hover:bg-white hover:text-[#071b35]'
+            ? 'border border-[#071b35]/25 bg-transparent text-[#071b35] hover:bg-[#071b35] hover:text-white dark:border-white/25 dark:text-white dark:hover:bg-white dark:hover:text-[#071b35]'
             : 'bg-[#0b2345] text-white shadow-lg shadow-[#0b2345]/15 hover:bg-[#12345d] dark:bg-white dark:text-[#071b35] dark:hover:bg-slate-100'"
         >
           Fale com a NTL
@@ -74,7 +72,7 @@
       <button
         class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border transition lg:hidden"
         :class="isTransparent
-          ? 'border-white/20 bg-transparent text-white hover:bg-white/10'
+          ? 'border-slate-700/20 bg-transparent text-[#071b35] hover:bg-slate-900/5 dark:border-white/20 dark:text-white dark:hover:bg-white/10'
           : 'border-slate-200 bg-white text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-white'"
         aria-label="Abrir menu"
         @click="mobileMenuOpen = !mobileMenuOpen"
@@ -127,7 +125,7 @@ const themeMenuOpen = ref(false)
 const themeMenuRef = ref<HTMLElement | null>(null)
 const { theme, setTheme } = useTheme()
 
-const isTransparent = computed(() => route.path === '/' && !scrolled.value && !mobileMenuOpen.value)
+const isTransparent = computed(() => !scrolled.value && !mobileMenuOpen.value)
 
 const menuItems: MenuItem[] = [
   { name: 'Início', path: '/' },
@@ -154,8 +152,8 @@ const isItemActive = (item: MenuItem) => {
 const desktopItemClass = (item: MenuItem) => {
   if (isTransparent.value) {
     return isItemActive(item)
-      ? 'text-white'
-      : 'text-white/85 hover:bg-white/10 hover:text-white'
+      ? 'text-[#071b35] dark:text-white'
+      : 'text-slate-700 hover:bg-slate-900/5 hover:text-[#071b35] dark:text-white/85 dark:hover:bg-white/10 dark:hover:text-white'
   }
   return isItemActive(item)
     ? 'bg-primary-50 text-primary-800 dark:bg-white/10 dark:text-white'
@@ -170,6 +168,7 @@ const onDocumentClick = (event: MouseEvent) => {
 watch(() => route.fullPath, () => {
   mobileMenuOpen.value = false
   themeMenuOpen.value = false
+  if (import.meta.client) scrolled.value = window.scrollY > 32
 })
 
 onMounted(() => {
