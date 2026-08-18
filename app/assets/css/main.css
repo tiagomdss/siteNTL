@@ -6,6 +6,7 @@
   html {
     scroll-behavior: smooth;
     background: #ffffff;
+    overflow-x: clip;
   }
 
   html.dark {
@@ -16,6 +17,22 @@
     @apply m-0 bg-white text-slate-900 antialiased;
     @apply dark:bg-[#06182f] dark:text-white;
     font-feature-settings: 'kern' 1, 'liga' 1;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: clip;
+  }
+
+  #__nuxt {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: clip;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
   }
 
   ::selection {
@@ -90,6 +107,23 @@
 .page-leave-to {
   opacity: 0;
   transform: translateY(4px);
+}
+
+@media (max-width: 639px) {
+  h1,
+  h2,
+  h3,
+  p,
+  a,
+  button,
+  span {
+    overflow-wrap: anywhere;
+  }
+
+  .container,
+  [class*='max-w-7xl'] {
+    min-width: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

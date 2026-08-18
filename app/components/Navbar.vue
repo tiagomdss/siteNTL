@@ -1,20 +1,22 @@
 <template>
   <nav
-    class="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl transition-all duration-300 dark:border-white/10 dark:bg-[#071b35]/95"
-    :class="scrolled ? 'shadow-md shadow-slate-900/5 dark:shadow-black/20' : 'shadow-sm shadow-slate-900/5'"
+    class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+    :class="isTransparent
+      ? 'border-b border-white/10 bg-[#06182f]/20 text-white backdrop-blur-md'
+      : 'border-b border-slate-200/80 bg-white/95 text-slate-900 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-[#071b35]/95 dark:text-white'"
   >
-    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
-      <NuxtLink to="/" class="group flex shrink-0 items-center" aria-label="NTL - Início">
+    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <NuxtLink to="/" class="group flex min-w-0 shrink-0 items-center" aria-label="NTL - Início">
         <img
-          src="/img/Marcas NTL3.png"
-          alt="NTL Nova Tecnologia"
-          class="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] dark:hidden sm:h-11"
-        />
-        <img
+          v-if="isTransparent"
           src="/img/Marca NTL Branca.png"
           alt="NTL Nova Tecnologia"
-          class="hidden h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] dark:block sm:h-11"
+          class="h-9 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.02] sm:h-11 sm:max-w-none"
         />
+        <template v-else>
+          <img src="/img/Marcas NTL3.png" alt="NTL Nova Tecnologia" class="h-9 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.02] dark:hidden sm:h-11 sm:max-w-none" />
+          <img src="/img/Marca NTL Branca.png" alt="NTL Nova Tecnologia" class="hidden h-9 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.02] dark:block sm:h-11 sm:max-w-none" />
+        </template>
       </NuxtLink>
 
       <div class="hidden items-center gap-1 lg:flex">
@@ -22,7 +24,10 @@
           v-for="item in menuItems"
           :key="item.name"
           :to="item.path"
-          class="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-[#071b35] dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-white"
+          class="rounded-full px-4 py-2 text-sm font-semibold transition"
+          :class="isTransparent
+            ? 'text-white/90 hover:bg-white/10 hover:text-white'
+            : 'text-slate-700 hover:bg-slate-100 hover:text-[#071b35] dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-white'"
         >
           {{ item.name }}
         </NuxtLink>
@@ -31,7 +36,10 @@
       <div class="hidden items-center gap-3 lg:flex">
         <div class="relative" ref="themeMenuRef">
           <button
-            class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-primary-300 hover:text-primary-700 dark:border-white/10 dark:bg-white/5 dark:text-white"
+            class="grid h-10 w-10 place-items-center rounded-full border transition"
+            :class="isTransparent
+              ? 'border-white/20 bg-white/10 text-white hover:bg-white/15'
+              : 'border-slate-200 bg-white text-slate-700 hover:border-primary-300 hover:text-primary-700 dark:border-white/10 dark:bg-white/5 dark:text-white'"
             aria-label="Alterar tema"
             @click="themeMenuOpen = !themeMenuOpen"
           >
@@ -41,13 +49,8 @@
           </button>
 
           <Transition name="menu-fade">
-            <div v-if="themeMenuOpen" class="absolute right-0 mt-3 w-40 overflow-hidden rounded-2xl border border-slate-200 bg-white p-1.5 shadow-xl dark:border-white/10 dark:bg-[#0b2345]">
-              <button
-                v-for="option in themeOptions"
-                :key="option.value"
-                class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10"
-                @click="setTheme(option.value); themeMenuOpen = false"
-              >
+            <div v-if="themeMenuOpen" class="absolute right-0 mt-3 w-40 overflow-hidden rounded-2xl border border-slate-200 bg-white p-1.5 text-slate-900 shadow-xl dark:border-white/10 dark:bg-[#0b2345] dark:text-white">
+              <button v-for="option in themeOptions" :key="option.value" class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10" @click="setTheme(option.value); themeMenuOpen = false">
                 {{ option.label }}
                 <span v-if="theme === option.value" class="h-2 w-2 rounded-full bg-primary-500" />
               </button>
@@ -55,13 +58,22 @@
           </Transition>
         </div>
 
-        <NuxtLink to="/contato" class="rounded-full bg-[#0b2345] px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#0b2345]/15 transition hover:-translate-y-0.5 hover:bg-[#12345d] dark:bg-white dark:text-[#071b35] dark:hover:bg-slate-100">
+        <NuxtLink
+          to="/contato"
+          class="rounded-full px-5 py-2.5 text-sm font-bold shadow-lg transition hover:-translate-y-0.5"
+          :class="isTransparent
+            ? 'border border-white/20 bg-white text-[#071b35] hover:bg-slate-100'
+            : 'bg-[#0b2345] text-white shadow-[#0b2345]/15 hover:bg-[#12345d] dark:bg-white dark:text-[#071b35] dark:hover:bg-slate-100'"
+        >
           Fale com a NTL
         </NuxtLink>
       </div>
 
       <button
-        class="grid h-11 w-11 place-items-center rounded-xl border border-slate-200 bg-white text-slate-700 lg:hidden dark:border-white/10 dark:bg-white/5 dark:text-white"
+        class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border transition lg:hidden"
+        :class="isTransparent
+          ? 'border-white/20 bg-white/10 text-white backdrop-blur'
+          : 'border-slate-200 bg-white text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-white'"
         aria-label="Abrir menu"
         @click="mobileMenuOpen = !mobileMenuOpen"
       >
@@ -71,28 +83,14 @@
     </div>
 
     <Transition name="mobile-menu">
-      <div v-if="mobileMenuOpen" class="border-t border-slate-200/70 bg-white/98 px-5 pb-6 pt-4 shadow-2xl backdrop-blur-xl lg:hidden dark:border-white/10 dark:bg-[#071b35]/98">
+      <div v-if="mobileMenuOpen" class="max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-slate-200/70 bg-white/98 px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-4 shadow-2xl backdrop-blur-xl lg:hidden dark:border-white/10 dark:bg-[#071b35]/98">
         <div class="mx-auto max-w-7xl space-y-1">
-          <NuxtLink
-            v-for="item in menuItems"
-            :key="item.name"
-            :to="item.path"
-            class="block rounded-xl px-4 py-3 font-semibold text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10"
-            @click="mobileMenuOpen = false"
-          >
+          <NuxtLink v-for="item in menuItems" :key="item.name" :to="item.path" class="block rounded-xl px-4 py-3 font-semibold text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10" @click="mobileMenuOpen = false">
             {{ item.name }}
           </NuxtLink>
 
           <div class="mt-4 grid grid-cols-3 gap-2 border-t border-slate-200 pt-4 dark:border-white/10">
-            <button
-              v-for="option in themeOptions"
-              :key="option.value"
-              class="rounded-xl border px-3 py-2 text-sm font-semibold transition"
-              :class="theme === option.value
-                ? 'border-primary-500 bg-primary-50 text-primary-700 dark:bg-primary-500/15 dark:text-primary-200'
-                : 'border-slate-200 text-slate-600 dark:border-white/10 dark:text-slate-300'"
-              @click="setTheme(option.value)"
-            >
+            <button v-for="option in themeOptions" :key="option.value" class="min-w-0 rounded-xl border px-2 py-2 text-xs font-semibold transition sm:px-3 sm:text-sm" :class="theme === option.value ? 'border-primary-500 bg-primary-50 text-primary-700 dark:bg-primary-500/15 dark:text-primary-200' : 'border-slate-200 text-slate-600 dark:border-white/10 dark:text-slate-300'" @click="setTheme(option.value)">
               {{ option.short }}
             </button>
           </div>
@@ -109,11 +107,14 @@
 <script setup lang="ts">
 import { useTheme } from '@/composables/useTheme'
 
+const route = useRoute()
 const scrolled = ref(false)
 const mobileMenuOpen = ref(false)
 const themeMenuOpen = ref(false)
 const themeMenuRef = ref<HTMLElement | null>(null)
 const { theme, setTheme } = useTheme()
+
+const isTransparent = computed(() => route.path === '/' && !scrolled.value && !mobileMenuOpen.value)
 
 const menuItems = [
   { name: 'Início', path: '/' },
@@ -130,15 +131,15 @@ const themeOptions = [
   { value: 'system' as const, label: 'Automático', short: 'Auto' }
 ]
 
-const onScroll = () => {
-  scrolled.value = window.scrollY > 24
+const onScroll = () => { scrolled.value = window.scrollY > 32 }
+const onDocumentClick = (event: MouseEvent) => {
+  if (themeMenuRef.value && event.target instanceof Node && !themeMenuRef.value.contains(event.target)) themeMenuOpen.value = false
 }
 
-const onDocumentClick = (event: MouseEvent) => {
-  if (themeMenuRef.value && event.target instanceof Node && !themeMenuRef.value.contains(event.target)) {
-    themeMenuOpen.value = false
-  }
-}
+watch(() => route.fullPath, () => {
+  mobileMenuOpen.value = false
+  themeMenuOpen.value = false
+})
 
 onMounted(() => {
   onScroll()
@@ -156,17 +157,9 @@ onBeforeUnmount(() => {
 .menu-fade-enter-active,
 .menu-fade-leave-active,
 .mobile-menu-enter-active,
-.mobile-menu-leave-active {
-  transition: opacity .2s ease, transform .2s ease;
-}
+.mobile-menu-leave-active { transition: opacity .2s ease, transform .2s ease; }
 .menu-fade-enter-from,
-.menu-fade-leave-to {
-  opacity: 0;
-  transform: translateY(-6px) scale(.98);
-}
+.menu-fade-leave-to { opacity: 0; transform: translateY(-6px) scale(.98); }
 .mobile-menu-enter-from,
-.mobile-menu-leave-to {
-  opacity: 0;
-  transform: translateY(-8px);
-}
+.mobile-menu-leave-to { opacity: 0; transform: translateY(-8px); }
 </style>
