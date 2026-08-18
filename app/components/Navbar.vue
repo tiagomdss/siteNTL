@@ -1,8 +1,8 @@
 <template>
   <nav
-    class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+    class="fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300"
     :class="isTransparent
-      ? 'border-b border-white/10 bg-[#06182f]/20 text-white backdrop-blur-md'
+      ? 'border-b border-transparent bg-transparent text-white shadow-none backdrop-blur-none'
       : 'border-b border-slate-200/80 bg-white/95 text-slate-900 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-[#071b35]/95 dark:text-white'"
   >
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -29,8 +29,8 @@
         >
           {{ item.name }}
           <span
-            class="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left rounded-full transition-transform duration-200"
-            :class="isItemActive(item) ? 'scale-x-100 bg-primary-400' : 'scale-x-0 bg-primary-400 group-hover:scale-x-100'"
+            class="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left rounded-full bg-primary-400 transition-transform duration-200"
+            :class="isItemActive(item) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"
           />
         </NuxtLink>
       </div>
@@ -40,7 +40,7 @@
           <button
             class="grid h-10 w-10 place-items-center rounded-full border transition"
             :class="isTransparent
-              ? 'border-white/20 bg-white/10 text-white hover:bg-white/15'
+              ? 'border-white/20 bg-transparent text-white hover:bg-white/10'
               : 'border-slate-200 bg-white text-slate-700 hover:border-primary-300 hover:text-primary-700 dark:border-white/10 dark:bg-white/5 dark:text-white'"
             aria-label="Alterar tema"
             @click="themeMenuOpen = !themeMenuOpen"
@@ -62,10 +62,10 @@
 
         <NuxtLink
           to="/contato"
-          class="rounded-full px-5 py-2.5 text-sm font-bold shadow-lg transition hover:-translate-y-0.5"
+          class="rounded-full px-5 py-2.5 text-sm font-bold transition hover:-translate-y-0.5"
           :class="isTransparent
-            ? 'border border-white/20 bg-white text-[#071b35] hover:bg-slate-100'
-            : 'bg-[#0b2345] text-white shadow-[#0b2345]/15 hover:bg-[#12345d] dark:bg-white dark:text-[#071b35] dark:hover:bg-slate-100'"
+            ? 'border border-white/25 bg-transparent text-white hover:bg-white hover:text-[#071b35]'
+            : 'bg-[#0b2345] text-white shadow-lg shadow-[#0b2345]/15 hover:bg-[#12345d] dark:bg-white dark:text-[#071b35] dark:hover:bg-slate-100'"
         >
           Fale com a NTL
         </NuxtLink>
@@ -74,7 +74,7 @@
       <button
         class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border transition lg:hidden"
         :class="isTransparent
-          ? 'border-white/20 bg-white/10 text-white backdrop-blur'
+          ? 'border-white/20 bg-transparent text-white hover:bg-white/10'
           : 'border-slate-200 bg-white text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-white'"
         aria-label="Abrir menu"
         @click="mobileMenuOpen = !mobileMenuOpen"
@@ -154,8 +154,8 @@ const isItemActive = (item: MenuItem) => {
 const desktopItemClass = (item: MenuItem) => {
   if (isTransparent.value) {
     return isItemActive(item)
-      ? 'bg-white/12 text-white'
-      : 'text-white/90 hover:bg-white/10 hover:text-white'
+      ? 'text-white'
+      : 'text-white/85 hover:bg-white/10 hover:text-white'
   }
   return isItemActive(item)
     ? 'bg-primary-50 text-primary-800 dark:bg-white/10 dark:text-white'
