@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: { name: 'page' },
     head: {
       title: 'NTL - Nova Tecnologia',
       htmlAttrs: { lang: 'pt-BR' },

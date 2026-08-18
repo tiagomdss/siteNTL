@@ -4,7 +4,6 @@
 
     <div class="min-h-screen overflow-x-clip bg-white text-slate-900 transition-colors duration-300 dark:bg-[#06182f] dark:text-white">
       <Navbar />
-      <NavigationLoader />
 
       <main class="min-w-0 overflow-x-clip">
         <NuxtPage />
