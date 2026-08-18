@@ -1,9 +1,7 @@
 <template>
   <nav
-    class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
-    :class="scrolled
-      ? 'border-b border-slate-200/70 bg-white/90 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-[#071b35]/92'
-      : 'bg-transparent'"
+    class="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl transition-all duration-300 dark:border-white/10 dark:bg-[#071b35]/95"
+    :class="scrolled ? 'shadow-md shadow-slate-900/5 dark:shadow-black/20' : 'shadow-sm shadow-slate-900/5'"
   >
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
       <NuxtLink to="/" class="group flex shrink-0 items-center" aria-label="NTL - Início">
@@ -24,7 +22,7 @@
           v-for="item in menuItems"
           :key="item.name"
           :to="item.path"
-          class="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-900/5 hover:text-[#0b2345] dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
+          class="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-[#071b35] dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-white"
         >
           {{ item.name }}
         </NuxtLink>
@@ -33,7 +31,7 @@
       <div class="hidden items-center gap-3 lg:flex">
         <div class="relative" ref="themeMenuRef">
           <button
-            class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white/70 text-slate-700 transition hover:border-primary-300 hover:text-primary-700 dark:border-white/10 dark:bg-white/5 dark:text-white"
+            class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-primary-300 hover:text-primary-700 dark:border-white/10 dark:bg-white/5 dark:text-white"
             aria-label="Alterar tema"
             @click="themeMenuOpen = !themeMenuOpen"
           >
@@ -63,7 +61,7 @@
       </div>
 
       <button
-        class="grid h-11 w-11 place-items-center rounded-xl border border-slate-200 bg-white/70 text-slate-700 backdrop-blur lg:hidden dark:border-white/10 dark:bg-white/5 dark:text-white"
+        class="grid h-11 w-11 place-items-center rounded-xl border border-slate-200 bg-white text-slate-700 lg:hidden dark:border-white/10 dark:bg-white/5 dark:text-white"
         aria-label="Abrir menu"
         @click="mobileMenuOpen = !mobileMenuOpen"
       >
@@ -73,7 +71,7 @@
     </div>
 
     <Transition name="mobile-menu">
-      <div v-if="mobileMenuOpen" class="border-t border-slate-200/70 bg-white/95 px-5 pb-6 pt-4 shadow-2xl backdrop-blur-xl lg:hidden dark:border-white/10 dark:bg-[#071b35]/98">
+      <div v-if="mobileMenuOpen" class="border-t border-slate-200/70 bg-white/98 px-5 pb-6 pt-4 shadow-2xl backdrop-blur-xl lg:hidden dark:border-white/10 dark:bg-[#071b35]/98">
         <div class="mx-auto max-w-7xl space-y-1">
           <NuxtLink
             v-for="item in menuItems"

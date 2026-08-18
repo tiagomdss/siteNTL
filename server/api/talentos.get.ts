@@ -1,19 +1,8 @@
-// @ts-ignore - mssql é CJS e é tratado como externo pelo Nitro
-import sql from 'mssql'
+import { getStcPool } from '../utils/stc'
 
-const getConfig = () => ({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  server: process.env.DB_SERVER || '',
-  port: Number(process.env.DB_PORT) || 1433,
-  database: process.env.DB_NAME || 'stc',
-  options: {
-    encrypt: false,
-    trustServerCertificate: true
-  },
-  requestTimeout: 20000,
-  connectionTimeout: 15000
-})
+const CACHE_TTL = 5 * 60_000
+let cachedResponse: { url: string | null; source: string } | null = null
+let cachedAt = 0
 
 const buildTalentUrl = (base: string | null | undefined) => {
   if (!base) return null
@@ -22,11 +11,15 @@ const buildTalentUrl = (base: string | null | undefined) => {
   return `${clean}/recrutamento_trabalheConosco.php`
 }
 
-export default defineEventHandler(async () => {
-  let pool: any = null
+export default defineEventHandler(async (event) => {
+  setHeader(event, 'Cache-Control', 'public, s-maxage=300, stale-while-revalidate=1800')
+
+  if (cachedResponse && Date.now() - cachedAt < CACHE_TTL) {
+    return cachedResponse
+  }
 
   try {
-    pool = await sql.connect(getConfig())
+    const pool = await getStcPool()
     const result = await pool.request().query(`
       SELECT TOP 1 linkVagas
       FROM stc.parametro
@@ -34,22 +27,21 @@ export default defineEventHandler(async () => {
     `)
 
     const baseUrl = result.recordset?.[0]?.linkVagas ?? null
-
-    return {
+    cachedResponse = {
       url: buildTalentUrl(baseUrl),
       source: 'stc.parametro'
     }
-  } catch (error: any) {
-    console.error('[API /talentos] Erro:', error.message)
+    cachedAt = Date.now()
 
-    // O site continua funcional mesmo se o sistema de recrutamento estiver indisponível.
+    return cachedResponse
+  } catch (error: any) {
+    console.error('[API /talentos] Erro:', error?.message)
+
+    if (cachedResponse) return cachedResponse
+
     return {
       url: null,
       source: 'unavailable'
-    }
-  } finally {
-    if (pool) {
-      try { await pool.close() } catch {}
     }
   }
 })

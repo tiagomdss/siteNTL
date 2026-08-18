@@ -9,6 +9,11 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  routeRules: {
+    '/api/vagas': { swr: 60 },
+    '/api/talentos': { swr: 300 }
+  },
+
   nitro: {
     externals: {
       external: ['mssql', 'tedious']
