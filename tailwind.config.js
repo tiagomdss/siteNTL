@@ -2,27 +2,31 @@
 export default {
   darkMode: 'class',
   content: [
-    "./components/**/*.{js,vue,ts}",
-    "./layouts/**/*.vue",
-    "./pages/**/*.vue",
-    "./plugins/**/*.{js,ts}",
-    "./app.vue",
-    "./error.vue",
+    './app/**/*.{js,vue,ts}',
+    './server/**/*.{js,ts}',
+    './error.vue'
   ],
   theme: {
     extend: {
       colors: {
         primary: {
-          50: '#fff7ed',
-          100: '#ffedd5',
-          200: '#fed7aa',
-          300: '#fdba74',
-          400: '#fb923c',
-          500: '#f97316',
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12',
+          50: '#eef6ff',
+          100: '#d9eaff',
+          200: '#bbd9ff',
+          300: '#8fc1ff',
+          400: '#5aa0ff',
+          500: '#347ff6',
+          600: '#1f63db',
+          700: '#194fb1',
+          800: '#183f8b',
+          900: '#17376e',
+          950: '#0b2345'
+        },
+        ntl: {
+          navy: '#071b35',
+          blue: '#0b2345',
+          steel: '#5f6b7a',
+          mist: '#eef2f6'
         },
         dark: {
           50: '#f8fafc',
@@ -34,42 +38,34 @@ export default {
           600: '#475569',
           700: '#334155',
           800: '#1e293b',
-          900: '#0f172a',
+          900: '#0f172a'
         }
+      },
+      boxShadow: {
+        'ntl': '0 24px 70px -30px rgba(7, 27, 53, .35)',
+        'ntl-dark': '0 24px 80px -30px rgba(0, 0, 0, .65)'
       },
       animation: {
         'gradient': 'gradient 8s linear infinite',
         'float': 'float 6s ease-in-out infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
+        'marquee': 'marquee 32s linear infinite'
       },
       keyframes: {
         gradient: {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center'
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center'
-          },
+          '0%, 100%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' }
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(-12px)' }
         },
-        glow: {
-          'from': {
-            'box-shadow': '0 0 20px rgba(249, 115, 22, 0.4), 0 0 40px rgba(249, 115, 22, 0.2)'
-          },
-          'to': {
-            'box-shadow': '0 0 30px rgba(249, 115, 22, 0.6), 0 0 60px rgba(249, 115, 22, 0.3)'
-          }
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' }
         }
       },
-      backdropBlur: {
-        xs: '2px',
-      }
-    },
+      backdropBlur: { xs: '2px' }
+    }
   },
-  plugins: [],
+  plugins: []
 }

@@ -2,85 +2,62 @@
   <Transition name="loading-fade">
     <div
       v-if="loading"
-      class="fixed inset-0 z-[9999] flex flex-col items-center justify-center pointer-events-none"
+      class="pointer-events-none fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white transition-colors dark:bg-[#06182f]"
       aria-label="Carregando página"
+      role="status"
     >
-      <!-- Dark gradient background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#111827] to-[#0a0a0a]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(52,127,246,.12),transparent_42%)]" />
 
-      <div class="relative flex flex-col items-center gap-8">
-        <!-- Logo with glow -->
-        <div class="relative group">
-          <div class="absolute -inset-4 bg-primary-500/20 rounded-full blur-[40px] animate-pulse"></div>
-          <img
-            src="/img/Marca NTL Branca.png"
-            alt="NTL - Nova Tecnologia"
-            class="relative h-16 animate-[loadingPulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite] drop-shadow-[0_0_30px_rgba(59,130,246,0.3)]"
-          />
+      <div class="relative flex flex-col items-center gap-7">
+        <div class="relative">
+          <div class="absolute -inset-5 rounded-full bg-primary-500/10 blur-[40px] dark:bg-primary-400/15" />
+          <img src="/img/Marcas NTL3.png" alt="NTL - Nova Tecnologia" class="relative h-14 w-auto animate-[loadingPulse_1.8s_ease-in-out_infinite] object-contain dark:hidden sm:h-16" />
+          <img src="/img/Marca NTL Branca.png" alt="NTL - Nova Tecnologia" class="relative hidden h-14 w-auto animate-[loadingPulse_1.8s_ease-in-out_infinite] object-contain dark:block sm:h-16" />
         </div>
 
-        <!-- Progress bar -->
-        <div class="w-[200px] h-[3px] bg-white/[0.08] rounded-full overflow-hidden relative">
-          <div
-            class="loading-bar-fill absolute top-0 left-0 h-full rounded-full bg-gradient-to-r from-primary-500 via-primary-400 to-primary-500"
-            :style="{ width: progress + '%' }"
-          ></div>
+        <div class="relative h-1 w-[190px] overflow-hidden rounded-full bg-slate-100 dark:bg-white/10">
+          <div class="absolute inset-y-0 left-0 rounded-full bg-[#0b2345] transition-[width] duration-150 dark:bg-primary-300" :style="{ width: `${progress}%` }" />
         </div>
 
-        <!-- Loading text -->
-        <p class="font-sans text-[0.8rem] font-normal tracking-[0.15em] uppercase text-white/[0.35] m-0">
-          Carregando
-        </p>
+        <p class="m-0 text-[.7rem] font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">Carregando</p>
       </div>
     </div>
   </Transition>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  loading: boolean
-}>()
+defineProps<{ loading: boolean }>()
 
 const progress = ref(0)
+let progressTimer: ReturnType<typeof setInterval> | null = null
+let finishTimer: ReturnType<typeof setTimeout> | null = null
 
 onMounted(() => {
-  // Animate from 0 to 90% quickly, then slow down
-  const fast = setInterval(() => {
-    if (progress.value < 90) {
-      progress.value += 3
-    } else {
-      clearInterval(fast)
+  progressTimer = setInterval(() => {
+    if (progress.value < 90) progress.value += 3
+    else if (progressTimer) {
+      clearInterval(progressTimer)
+      progressTimer = null
     }
   }, 20)
 
-  // Jump to 100% right before hiding
-  setTimeout(() => {
+  finishTimer = setTimeout(() => {
     progress.value = 100
-  }, 700)
+  }, 380)
+})
+
+onBeforeUnmount(() => {
+  if (progressTimer) clearInterval(progressTimer)
+  if (finishTimer) clearTimeout(finishTimer)
 })
 </script>
 
 <style scoped>
-.loading-fade-leave-active {
-  transition: opacity 0.6s ease-out;
-}
-
-.loading-fade-leave-to {
-  opacity: 0;
-}
-
-.loading-bar-fill {
-  transition: width 0.15s ease-out;
-}
+.loading-fade-leave-active { transition: opacity .35s ease-out; }
+.loading-fade-leave-to { opacity: 0; }
 
 @keyframes loadingPulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(0.97);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .72; transform: scale(.985); }
 }
 </style>

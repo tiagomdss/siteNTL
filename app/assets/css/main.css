@@ -3,133 +3,102 @@
 @tailwind utilities;
 
 @layer base {
-  * {
-    @apply scroll-smooth;
+  html {
+    scroll-behavior: smooth;
+    background: #ffffff;
+  }
+
+  html.dark {
+    background: #06182f;
   }
 
   body {
-    @apply bg-gray-50 text-gray-900 antialiased;
-    @apply dark:bg-gray-950 dark:text-white;
-    /* background: linear-gradient(to bottom, #0a0a0a, #1a1a1a); Removed to let tailwind handle it or move to dark: class */
+    @apply m-0 bg-white text-slate-900 antialiased;
+    @apply dark:bg-[#06182f] dark:text-white;
+    font-feature-settings: 'kern' 1, 'liga' 1;
   }
 
-  .dark body {
-    background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
+  ::selection {
+    background: rgba(52, 127, 246, .25);
+  }
+
+  :focus-visible {
+    outline: 3px solid rgba(52, 127, 246, .55);
+    outline-offset: 3px;
   }
 }
 
 @layer components {
-
-  /* Liquid Glass Effect */
   .glass {
-    @apply bg-white/70 backdrop-blur-md border border-gray-200 rounded-2xl shadow-sm;
-    @apply dark:bg-white/10 dark:border-white/20 dark:shadow-none;
+    @apply border border-slate-200 bg-white/75 shadow-sm backdrop-blur-xl;
+    @apply dark:border-white/10 dark:bg-white/5 dark:shadow-none;
   }
 
   .glass-strong {
-    @apply bg-white/90 backdrop-blur-xl border border-gray-200 rounded-2xl shadow-md;
-    @apply dark:bg-white/20 dark:border-white/30 dark:shadow-none;
+    @apply border border-slate-200 bg-white/90 shadow-lg backdrop-blur-2xl;
+    @apply dark:border-white/10 dark:bg-[#0b2345]/90 dark:shadow-none;
   }
 
-  /* Gradient Text */
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600;
+    @apply bg-gradient-to-r from-primary-500 to-primary-800 bg-clip-text text-transparent;
+    @apply dark:from-primary-200 dark:to-primary-400;
   }
 
-  /* Scroll to Top Button */
-  .scroll-to-top {
-    @apply fixed bottom-8 right-8 z-50 p-4 rounded-full;
-    @apply bg-gradient-to-r from-primary-500 to-primary-600;
-    @apply text-white shadow-2xl shadow-primary-500/50;
-    @apply transition-all duration-300 hover:scale-110;
-    @apply opacity-0 pointer-events-none;
-  }
-
-  .scroll-to-top.show {
-    @apply opacity-100 pointer-events-auto;
-  }
-
-  /* Animated Gradient Background */
-  .gradient-bg {
-    @apply bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900;
-    background-size: 200% 200%;
-    animation: gradient 15s ease infinite;
-  }
-
-  /* Liquid Button */
   .btn-liquid {
-    @apply relative px-8 py-4 rounded-full font-semibold text-white overflow-hidden;
-    @apply bg-gradient-to-r from-primary-500 to-primary-600;
-    @apply transition-all duration-300 ease-out;
-    @apply hover:shadow-2xl hover:shadow-primary-500/50 hover:scale-105;
+    @apply inline-flex items-center justify-center rounded-full bg-[#0b2345] px-7 py-3.5 font-bold text-white transition duration-300;
+    @apply hover:-translate-y-0.5 hover:bg-[#12345d] hover:shadow-xl;
+    @apply dark:bg-white dark:text-[#071b35] dark:hover:bg-slate-100;
   }
 
-  .btn-liquid::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-r from-primary-400 to-primary-500;
-    @apply opacity-0 transition-opacity duration-300;
-  }
-
-  .btn-liquid:hover::before {
-    @apply opacity-100;
-  }
-
-  /* Card with Liquid Effect */
   .card-liquid {
-    @apply relative p-6 rounded-2xl;
-    @apply bg-white border border-gray-100 shadow-sm ease-out;
-    @apply dark:bg-white/5 dark:border-white/10 dark:shadow-none;
-    @apply backdrop-blur-lg;
-    @apply transition-all duration-300;
-    @apply hover:border-primary-500/50 hover:shadow-xl hover:shadow-primary-500/20;
-    /* dark:bg-gradient-to-br from-white/5 to-white/10 handled by bg-white/5 for now or re-add gradient */
-  }
-
-  .dark .card-liquid {
-    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
-  }
-
-  /* Floating Animation */
-  .float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  /* Glow Effect */
-  .glow {
-    @apply animate-glow;
+    @apply rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300;
+    @apply hover:-translate-y-1 hover:border-primary-200 hover:shadow-ntl;
+    @apply dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-primary-400/30;
   }
 }
 
 @layer utilities {
-  .text-shadow {
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  }
-
-  .text-shadow-lg {
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-dark-900;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary-500/50 rounded-full;
+  background: rgba(100, 116, 139, .38);
+  border-radius: 999px;
 }
 
-/* Page Transition (Fade only) */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, .28);
+}
+
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.3s ease-out;
+  transition: opacity .2s ease, transform .2s ease;
 }
 
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
+  transform: translateY(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }

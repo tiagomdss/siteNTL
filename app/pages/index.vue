@@ -1,658 +1,421 @@
 <template>
-  <div class="overflow-x-hidden">
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center pt-20 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors">
-      <!-- Background Image -->
-      <div class="absolute inset-0 z-0">
-        <img src="/img/inicial.jpg" alt="Background" class="w-full h-full object-cover opacity-10 dark:opacity-30" />
-        <div class="absolute inset-0 bg-gradient-to-r from-gray-50 via-gray-50/95 to-gray-50/40 dark:from-gray-950 dark:via-gray-900/95 dark:to-gray-900/40"></div>
+  <div class="overflow-x-hidden bg-white dark:bg-[#06182f]">
+    <!-- HERO -->
+    <section class="relative flex min-h-[92vh] items-center overflow-hidden pt-20">
+      <div class="absolute inset-0">
+        <img src="/img/inicial.jpg" alt="Equipe e tecnologia NTL" class="h-full w-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/55 dark:from-[#06182f] dark:via-[#06182f]/96 dark:to-[#06182f]/65" />
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(52,127,246,.16),transparent_38%)]" />
       </div>
-      
-      <!-- Content -->
-      <div class="container mx-auto px-6 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <!-- Left: Text -->
-          <div>
-            <div class="inline-block px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider mb-6">
-              SOLUÇÕES EM TECNOLOGIA
-            </div>
-            
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-gray-900 dark:text-white">
-              Soluções sob medida para a
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-600 block">performance</span>
-              de sua empresa.
-            </h1>
-            
-            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-2xl leading-relaxed">
-              Tecnologia de ponta e excelência humana unidas para transformar o futuro do seu negócio.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4">
-              <button class="px-8 py-4 bg-[#FF6B00] hover:bg-[#ff8534] text-white rounded-lg font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-orange-500/20 dark:shadow-orange-900/20">
-                Conheça nossas soluções
-              </button>
-              <a href="#empresa" class="px-8 py-4 bg-white/50 hover:bg-white/80 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-lg font-bold transition-all backdrop-blur-sm flex items-center justify-center gap-2 group">
-                Fale com um especialista
-                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-              </a>
-            </div>
+
+      <div class="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-5 py-20 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:py-28">
+        <div class="max-w-3xl">
+          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#0b2345]/15 bg-white/75 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0b2345] shadow-sm backdrop-blur dark:border-white/15 dark:bg-white/5 dark:text-primary-200">
+            <span class="h-2 w-2 rounded-full bg-primary-500" />
+            Tecnologia, serviços e pessoas desde 1988
           </div>
 
-          <!-- Right: Card de Vagas -->
-          <div class="hidden lg:block">
-            <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200/60 dark:border-white/10 overflow-hidden">
-              <!-- Card Header -->
-              <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-white/5">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                  <span class="font-bold text-gray-900 dark:text-white text-sm">Vagas Abertas</span>
+          <h1 class="text-balance text-5xl font-bold leading-[1.02] tracking-[-0.045em] text-[#071b35] dark:text-white sm:text-6xl lg:text-7xl xl:text-[5.35rem]">
+            Performance para operações que
+            <span class="text-primary-600 dark:text-primary-300">não podem parar.</span>
+          </h1>
+
+          <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300 sm:text-xl">
+            A NTL une experiência, tecnologia e capital humano para entregar infraestrutura, software, atendimento, facilities e transformação digital sob medida.
+          </p>
+
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="#solucoes" class="inline-flex items-center justify-center rounded-full bg-[#0b2345] px-7 py-4 font-bold text-white shadow-xl shadow-[#071b35]/15 transition hover:-translate-y-0.5 hover:bg-[#12345d] dark:bg-white dark:text-[#071b35] dark:hover:bg-slate-100">
+              Conheça nossas soluções
+            </a>
+            <NuxtLink to="/contato" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/70 px-7 py-4 font-bold text-[#0b2345] backdrop-blur transition hover:-translate-y-0.5 hover:border-[#0b2345] dark:border-white/20 dark:bg-white/5 dark:text-white dark:hover:border-white">
+              Fale com um especialista
+              <span aria-hidden="true">↗</span>
+            </NuxtLink>
+          </div>
+
+          <div class="mt-11 grid max-w-2xl grid-cols-3 gap-3 border-t border-slate-200 pt-7 dark:border-white/10">
+            <div>
+              <strong class="block text-2xl font-bold text-[#071b35] dark:text-white sm:text-3xl">{{ yearsOfHistory }}+</strong>
+              <span class="mt-1 block text-xs leading-5 text-slate-500 dark:text-slate-400 sm:text-sm">anos de história</span>
+            </div>
+            <div>
+              <strong class="block text-2xl font-bold text-[#071b35] dark:text-white sm:text-3xl">Brasil</strong>
+              <span class="mt-1 block text-xs leading-5 text-slate-500 dark:text-slate-400 sm:text-sm">atuação nacional</span>
+            </div>
+            <div>
+              <strong class="block text-2xl font-bold text-[#071b35] dark:text-white sm:text-3xl">Full service</strong>
+              <span class="mt-1 block text-xs leading-5 text-slate-500 dark:text-slate-400 sm:text-sm">soluções integradas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vagas em tempo real -->
+        <div class="lg:justify-self-end">
+          <div class="relative mx-auto max-w-xl overflow-hidden rounded-[2rem] border border-white/70 bg-white/88 p-2 shadow-[0_30px_90px_-30px_rgba(7,27,53,.45)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0b2345]/88 lg:mx-0">
+            <div class="rounded-[1.6rem] border border-slate-200/80 bg-white p-5 dark:border-white/10 dark:bg-[#071b35] sm:p-6">
+              <div class="flex items-center justify-between gap-4">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="h-2.5 w-2.5 animate-pulse rounded-full bg-emerald-500" />
+                    <p class="text-sm font-bold text-[#071b35] dark:text-white">Oportunidades NTL</p>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Dados sincronizados com o STC</p>
                 </div>
-                <NuxtLink to="/vagas" class="text-xs text-blue-600 dark:text-blue-400 font-semibold hover:underline">
-                  Ver todas →
-                </NuxtLink>
+                <NuxtLink to="/vagas" class="text-xs font-bold text-primary-600 hover:underline dark:text-primary-300">Ver todas</NuxtLink>
               </div>
 
-              <!-- Card Body -->
-              <div class="divide-y divide-gray-100 dark:divide-white/5">
-                <!-- Loading skeleton -->
+              <div class="mt-5 divide-y divide-slate-100 dark:divide-white/10">
                 <template v-if="vagasPending">
-                  <div v-for="i in 4" :key="i" class="px-5 py-4 flex items-center gap-3 animate-pulse">
-                    <div class="w-8 h-8 rounded-lg bg-gray-200 dark:bg-gray-700 shrink-0"></div>
+                  <div v-for="i in 4" :key="i" class="flex animate-pulse items-center gap-3 py-4">
+                    <div class="h-10 w-10 rounded-xl bg-slate-100 dark:bg-white/10" />
                     <div class="flex-1">
-                      <div class="h-3.5 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
-                      <div class="h-3 bg-gray-100 dark:bg-gray-800 rounded w-1/2"></div>
+                      <div class="h-3.5 w-3/4 rounded bg-slate-100 dark:bg-white/10" />
+                      <div class="mt-2 h-3 w-1/2 rounded bg-slate-100 dark:bg-white/10" />
                     </div>
                   </div>
                 </template>
 
-                <!-- Sem vagas -->
-                <div v-else-if="!vagasHome.length" class="px-5 py-8 text-center text-gray-500 dark:text-gray-400 text-sm">
-                  Nenhuma vaga ativa no momento.
+                <div v-else-if="!vagasHome.length" class="py-10 text-center">
+                  <p class="font-semibold text-slate-700 dark:text-slate-200">Nenhuma vaga ativa agora.</p>
+                  <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Seu currículo ainda pode entrar no nosso banco de talentos.</p>
                 </div>
 
-                <!-- Lista de vagas reais -->
                 <NuxtLink
-                  v-else
                   v-for="vaga in vagasHome"
+                  v-else
                   :key="vaga.codigo"
                   to="/vagas"
-                  class="flex items-center gap-3 px-5 py-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group/item"
+                  class="group flex items-center gap-3 py-4"
                 >
-                  <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0 group-hover/item:bg-blue-200 dark:group-hover/item:bg-blue-800/40 transition-colors">
-                    <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                  <div class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary-50 text-primary-700 transition group-hover:bg-primary-100 dark:bg-primary-500/10 dark:text-primary-300">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                   </div>
-                  <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white truncate group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors">{{ vaga.nomeVaga }}</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">{{ vaga.cargo || 'Geral' }}</p>
+                  <div class="min-w-0 flex-1">
+                    <p class="truncate text-sm font-bold text-slate-800 transition group-hover:text-primary-700 dark:text-white dark:group-hover:text-primary-300">{{ vaga.nomeVaga }}</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-500 dark:text-slate-400">{{ vaga.cargo || 'Oportunidade NTL' }}</p>
                   </div>
-                  <svg class="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover/item:text-blue-500 group-hover/item:translate-x-0.5 transition-all shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                  <span class="text-slate-300 transition group-hover:translate-x-1 group-hover:text-primary-500 dark:text-slate-600">→</span>
                 </NuxtLink>
               </div>
 
-              <!-- Card Footer -->
-              <div class="px-5 py-3 bg-gray-50 dark:bg-white/5 border-t border-gray-100 dark:border-white/5">
-                <NuxtLink to="/vagas" class="w-full flex items-center justify-center gap-2 text-sm font-semibold text-[#FF6B00] hover:text-[#ff8534] transition-colors">
-                  Candidatar-se agora
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </NuxtLink>
-              </div>
+              <a
+                v-if="talentosUrl"
+                :href="talentosUrl"
+                target="_blank"
+                rel="noopener"
+                class="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#0b2345] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#12345d] dark:bg-white dark:text-[#071b35]"
+              >
+                Cadastrar currículo no banco de talentos
+                <span aria-hidden="true">↗</span>
+              </a>
+              <NuxtLink v-else to="/vagas" class="mt-4 flex w-full items-center justify-center rounded-xl bg-[#0b2345] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#12345d] dark:bg-white dark:text-[#071b35]">
+                Conhecer oportunidades
+              </NuxtLink>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- A Empresa Section -->
-    <section id="empresa" class="py-24 bg-white dark:bg-gray-950 transition-colors">
-      <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <!-- Text Content -->
+    <!-- CLIENTES / PROVA SOCIAL -->
+    <section id="clientes" class="border-y border-slate-200 bg-slate-50 py-10 dark:border-white/10 dark:bg-[#051426]">
+      <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div class="mb-7 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <div class="flex items-center gap-2 mb-6">
-              <span class="w-10 h-0.5 bg-[#FF6B00]"></span>
-              <span class="text-[#FF6B00] font-bold uppercase text-sm tracking-wider">A EMPRESA</span>
-            </div>
-            
-            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-gray-900 dark:text-white leading-tight">
-              Harmonização entre <br/>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-600">tecnologia</span> e capital humano.
-            </h2>
-            
-            <div class="space-y-6 text-gray-600 dark:text-gray-400 leading-relaxed">
-              <p>
-                A NTL é uma empresa que há mais de 30 anos acredita que uma instituição de sucesso resulta da harmonização entre tecnologia de ponta disponível e a excelência do seu capital humano.
-              </p>
-              <p>
-                Reconhecida no segmento de soluções em tecnologia da informação, estendeu sua atuação para área de recursos humanos, especializando-se na alocação de mão-de-obra e formação de equipes especializadas.
-              </p>
-              
-              <div class="border-l-4 border-[#FF6B00] pl-6 py-2 my-8 italic text-gray-700 dark:text-gray-300 text-lg">
-                "A NTL - Nova Tecnologia é essencialmente uma empresa de serviços."
-              </div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-              <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl border border-gray-100 dark:border-gray-800 shadow-lg dark:shadow-none">
-                <h4 class="text-[#FF6B00] font-bold mb-2">Missão</h4>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Apoiar e ser fator de sucesso no desenvolvimento de nossos clientes, oferecendo um ambiente propício para o desenvolvimento.</p>
-              </div>
-              <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl border border-gray-100 dark:border-gray-800 shadow-lg dark:shadow-none">
-                <h4 class="text-blue-600 dark:text-blue-500 font-bold mb-2">Qualidade</h4>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Compromisso com a satisfação dos clientes, aperfeiçoamento e relação com fornecedores e colaboradores comprometidos.</p>
-              </div>
-            </div>
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">Experiência comprovada</p>
+            <h2 class="mt-2 text-2xl font-bold tracking-tight text-[#071b35] dark:text-white">Organizações atendidas ao longo da nossa história</h2>
           </div>
-          
-          <!-- Grid Cards -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="space-y-6 md:mt-12">
-              <div class="bg-gray-50 dark:bg-gray-900 p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-[#FF6B00]/50 transition-colors group shadow-lg dark:shadow-none">
-                <div class="w-12 h-12 bg-[#FF6B00]/20 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <svg class="w-6 h-6 text-[#FF6B00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                </div>
-                <h3 class="text-gray-900 dark:text-white font-bold text-xl mb-3">Experiência</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm">Mais de 30 anos de sucesso no planejamento e execução de projetos.</p>
-              </div>
-              
-              <div class="bg-gray-50 dark:bg-gray-900 p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-blue-500/50 transition-colors group shadow-lg dark:shadow-none">
-                <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <svg class="w-6 h-6 text-blue-600 dark:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                </div>
-                <h3 class="text-gray-900 dark:text-white font-bold text-xl mb-3">Vanguardismo</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm">Soluções tecnológicas com método de produtividade.</p>
-              </div>
-            </div>
-            
-            <div class="space-y-6">
-              <div class="bg-gray-50 dark:bg-gray-900 p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-blue-500/50 transition-colors group shadow-lg dark:shadow-none">
-                <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <svg class="w-6 h-6 text-blue-600 dark:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <h3 class="text-gray-900 dark:text-white font-bold text-xl mb-3">Capacidade</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm">Capacidade técnica comprovada por empresas de grande relevância.</p>
-              </div>
-              
-              <div class="bg-gray-50 dark:bg-gray-900 p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-[#FF6B00]/50 transition-colors group shadow-lg dark:shadow-none">
-                <div class="w-12 h-12 bg-[#FF6B00]/20 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <svg class="w-6 h-6 text-[#FF6B00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                </div>
-                <h3 class="text-gray-900 dark:text-white font-bold text-xl mb-3">Exatidão</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm">Práticas de gerenciamento de projetos para minimizar riscos.</p>
-              </div>
-            </div>
-          </div>
+          <p class="max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400">Projetos para empresas privadas e instituições públicas, em diferentes escalas e níveis de serviço.</p>
         </div>
-      </div>
-    </section>
-    
-    <!-- Timeline Section -->
-    <section class="py-24 bg-gray-50 dark:bg-gray-900 border-y border-gray-200 dark:border-white/5 relative overflow-hidden transition-colors">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-            Nossa História
-          </h2>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Uma trajetória marcada por inovação e conquistas constantes.</p>
-        </div>
-        
-        <div class="relative">
-          <!-- Navigation Buttons -->
-          <button @click="scrollTimeline('left')" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-[#FF6B00] rounded-full flex items-center justify-center text-white shadow-lg hover:bg-[#ff8534] transition-all hover:scale-110 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-          </button>
-          
-          <button @click="scrollTimeline('right')" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-[#FF6B00] rounded-full flex items-center justify-center text-white shadow-lg hover:bg-[#ff8534] transition-all hover:scale-110 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-          </button>
 
-          <!-- Timeline Container -->
-          <div ref="timelineScroll" class="overflow-x-auto hide-scrollbar pb-12 pt-12 relative" style="scroll-behavior: smooth;">
-            <div class="inline-flex min-w-full relative px-12">
-              <!-- Central Line -->
-              <div class="absolute top-1/2 left-0 w-full h-1 bg-gray-300 dark:bg-gray-700 rounded-full -translate-y-1/2"></div>
-              
-              <!-- Events -->
-              <div v-for="(event, index) in timelineEvents" :key="index" class="relative group flex flex-col items-center flex-shrink-0 w-64 mx-4">
-                
-                <!-- Dot on Line -->
-                <div class="absolute top-1/2 left-1/2 w-4 h-4 bg-[#FF6B00] rounded-full -translate-x-1/2 -translate-y-1/2 z-10 border-4 border-gray-50 dark:border-gray-900 group-hover:scale-150 transition-transform duration-300"></div>
-
-                <!-- Content Top (Even indices) -->
-                <div v-if="index % 2 === 0" class="mb-12 text-center transform hover:-translate-y-2 transition-transform duration-300 w-full px-2">
-                  <span class="text-3xl font-black text-gray-400/20 dark:text-white/20 block mb-2">{{ event.year }}</span>
-                  <h4 class="text-gray-900 dark:text-white font-bold text-lg mb-1 leading-tight">{{ event.title }}</h4>
-                  <p class="text-xs text-gray-500 dark:text-gray-400">{{ event.description }}</p>
-                </div>
-                
-                <!-- Spacer for Top (Odd indices) -->
-                <div v-else class="mb-12 w-full h-24"></div>
-
-                <!-- Content Bottom (Odd indices) -->
-                <div v-if="index % 2 !== 0" class="mt-12 text-center transform hover:translate-y-2 transition-transform duration-300 w-full px-2">
-                   <h4 class="text-gray-900 dark:text-white font-bold text-lg mb-1 leading-tight">{{ event.title }}</h4>
-                   <span class="text-3xl font-black text-gray-400/20 dark:text-white/20 block mt-2">{{ event.year }}</span>
-                   <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ event.description }}</p>
-                </div>
-
-                 <!-- Spacer for Bottom (Even indices) -->
-                <div v-else class="mt-12 w-full h-24"></div>
-
-              </div>
+        <div class="client-marquee overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+          <div class="flex w-max animate-marquee items-center gap-4 hover:[animation-play-state:paused]">
+            <div v-for="(client, index) in clientsLoop" :key="`${client.name}-${index}`" class="flex h-24 w-44 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white px-7 shadow-sm dark:border-white/10 dark:bg-white/5">
+              <img :src="client.logo" :alt="client.name" class="max-h-11 max-w-[125px] object-contain grayscale transition duration-300 hover:grayscale-0 dark:brightness-110" loading="lazy" />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Soluções Estratégicas -->
-    <section id="solucoes" class="py-24 bg-white dark:bg-gray-950 transition-colors">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-            Soluções Estratégicas
+    <!-- EMPRESA -->
+    <section id="empresa" class="py-20 sm:py-24 lg:py-32">
+      <div class="mx-auto grid max-w-7xl gap-12 px-5 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:gap-20 lg:px-8">
+        <div class="lg:sticky lg:top-28 lg:self-start">
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">A NTL</p>
+          <h2 class="mt-4 text-4xl font-bold leading-tight tracking-[-0.035em] text-[#071b35] dark:text-white sm:text-5xl">
+            Tecnologia de ponta com excelência humana.
           </h2>
-          <p class="text-gray-600 dark:text-gray-400">Tecnologia aplicada para maximizar resultados.</p>
+          <p class="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-300">
+            A NTL nasceu em 1988 e evoluiu acompanhando cada grande transformação do mercado de tecnologia. Hoje atua como empresa full service, combinando engenharia de sistemas, infraestrutura, atendimento, facilities, terceirização e gestão digital.
+          </p>
+          <NuxtLink to="/contato" class="mt-8 inline-flex items-center gap-2 font-bold text-[#0b2345] transition hover:gap-3 dark:text-primary-300">
+            Converse sobre seu projeto <span>→</span>
+          </NuxtLink>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div v-for="(solucao, i) in solutions" :key="i" class="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8 hover:bg-white dark:hover:bg-gray-800/50 transition-all group shadow-sm dark:shadow-none">
-            <div class="w-12 h-12 bg-transparent rounded-lg flex items-center justify-start mb-6 text-[#FF6B00]">
-              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" :d="solucao.icon"></path></svg>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <article v-for="item in differentials" :key="item.title" class="group rounded-[1.75rem] border border-slate-200 bg-slate-50 p-7 transition duration-300 hover:-translate-y-1 hover:border-primary-200 hover:bg-white hover:shadow-ntl dark:border-white/10 dark:bg-white/5 dark:hover:border-primary-400/30 dark:hover:bg-white/[.07]">
+            <div class="grid h-11 w-11 place-items-center rounded-xl bg-[#0b2345] text-sm font-black text-white dark:bg-white dark:text-[#071b35]">{{ item.number }}</div>
+            <h3 class="mt-6 text-xl font-bold text-[#071b35] dark:text-white">{{ item.title }}</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{{ item.text }}</p>
+          </article>
+
+          <article class="rounded-[1.75rem] bg-[#0b2345] p-7 text-white sm:col-span-2 dark:bg-primary-950">
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary-200">Nossa missão</p>
+            <p class="mt-4 text-xl font-semibold leading-8 sm:text-2xl">
+              Apoiar e ser fator de sucesso nas operações dos clientes, aplicando tecnologia, boas práticas e soluções específicas para gerar resultados sustentáveis.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUÇÕES CARROSSEL -->
+    <section id="solucoes" class="bg-[#071b35] py-20 text-white sm:py-24 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div class="max-w-3xl">
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary-300">Soluções</p>
+            <h2 class="mt-4 text-4xl font-bold tracking-[-0.035em] sm:text-5xl">Uma operação, várias frentes. Um só parceiro.</h2>
+            <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-300">Estruturamos a combinação certa de pessoas, processos e tecnologia para cada cenário.</p>
+          </div>
+          <div class="hidden gap-2 md:flex">
+            <button class="grid h-11 w-11 place-items-center rounded-full border border-white/20 transition hover:bg-white hover:text-[#071b35]" aria-label="Solução anterior" @click="scrollSolutions('left')">←</button>
+            <button class="grid h-11 w-11 place-items-center rounded-full border border-white/20 transition hover:bg-white hover:text-[#071b35]" aria-label="Próxima solução" @click="scrollSolutions('right')">→</button>
+          </div>
+        </div>
+
+        <div ref="solutionsScroll" class="hide-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+          <article v-for="(solution, index) in solutions" :key="solution.title" class="group min-h-[360px] w-[84vw] max-w-[370px] shrink-0 snap-start rounded-[1.75rem] border border-white/10 bg-white/[.06] p-7 transition duration-300 hover:-translate-y-1 hover:bg-white/[.1] sm:w-[360px]">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold tracking-[0.18em] text-primary-300">0{{ index + 1 }}</span>
+              <div class="grid h-11 w-11 place-items-center rounded-full border border-white/15 text-lg">{{ solution.icon }}</div>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ solucao.title }}</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">{{ solucao.description }}</p>
-            
-            <ul class="space-y-3">
-              <li v-for="(feature, idx) in solucao.items" :key="idx" class="flex items-start gap-3 text-sm text-gray-700 dark:text-gray-300">
-                <svg class="w-5 h-5 text-[#FF6B00] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                <span>{{ feature }}</span>
+            <h3 class="mt-10 text-2xl font-bold">{{ solution.title }}</h3>
+            <p class="mt-4 min-h-[72px] text-sm leading-7 text-slate-300">{{ solution.description }}</p>
+            <ul class="mt-7 space-y-3 border-t border-white/10 pt-6">
+              <li v-for="item in solution.items" :key="item" class="flex gap-3 text-sm text-slate-200">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-300" />
+                {{ item }}
               </li>
             </ul>
-          </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Sistema NEEO - Flagship Section -->
-    <section class="py-24 bg-gray-50 dark:bg-[#0a0f1c] border-y border-gray-200 dark:border-white/5 relative overflow-hidden transition-colors">
-      <!-- Background Elements -->
-      <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#FF6B00]/5 to-transparent pointer-events-none"></div>
-      
-      <div class="container mx-auto px-6 relative z-10">
-        <div class="text-center mb-16">
-          <div class="inline-flex items-center gap-2 mb-4 bg-[#FF6B00]/10 px-4 py-2 rounded-full border border-[#FF6B00]/20">
-             <svg class="w-4 h-4 text-[#FF6B00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-             <span class="text-[#FF6B00] text-xs font-bold uppercase tracking-wider">Sistema NEEO</span>
+    <!-- PROJETOS -->
+    <section class="py-20 sm:py-24 lg:py-32">
+      <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[.75fr_1.25fr] lg:items-end">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">Projetos e escala</p>
+            <h2 class="mt-4 text-4xl font-bold tracking-[-0.035em] text-[#071b35] dark:text-white sm:text-5xl">Experiência que sai do discurso.</h2>
           </div>
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-            Sistema Manager NEEO
-          </h2>
-          <p class="text-gray-600 dark:text-gray-400">Gestão completa de Recursos Humanos na nuvem</p>
+          <p class="max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">Ao longo da história, a NTL operou projetos de suporte, service desk, desenvolvimento, infraestrutura e alocação de equipes para organizações de diferentes portes.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          <!-- Contratação -->
-          <div class="space-y-4">
-            <h3 class="text-gray-900 dark:text-white font-bold text-lg border-b border-gray-200 dark:border-gray-800 pb-2">Contratação</h3>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Recrutamento</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Sindicatos</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Documentos</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Validação VT</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Exames médicos</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Benefícios</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Outros</li>
-            </ul>
-          </div>
-
-          <!-- Gestão -->
-          <div class="space-y-4">
-            <h3 class="text-gray-900 dark:text-white font-bold text-lg border-b border-gray-200 dark:border-gray-800 pb-2">Gestão</h3>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Ponto/Presença</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Avaliação de desempenho</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Uniformes/EPI/Equipamentos</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Diário de bordo</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Outros</li>
-            </ul>
-          </div>
-
-          <!-- Folha -->
-          <div class="space-y-4">
-            <h3 class="text-gray-900 dark:text-white font-bold text-lg border-b border-gray-200 dark:border-gray-800 pb-2">Folha</h3>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Licenças</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Afastados</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Horas extras</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Plantões</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Escalas</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Banco de horas</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Outros</li>
-            </ul>
-          </div>
-
-          <!-- Benefícios -->
-          <div class="space-y-4">
-            <h3 class="text-gray-900 dark:text-white font-bold text-lg border-b border-gray-200 dark:border-gray-800 pb-2">Benefícios</h3>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>VA/VR/VT</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Saúde/Seguros</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Interfaces com operadoras</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Auditoria</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 bg-[#FF6B00] rounded-full"></span>Outros</li>
-            </ul>
-          </div>
+        <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <article v-for="project in projectHighlights" :key="project.title" class="rounded-[1.6rem] border border-slate-200 p-6 dark:border-white/10 dark:bg-white/5">
+            <span class="text-xs font-bold uppercase tracking-[0.16em] text-primary-600 dark:text-primary-300">{{ project.area }}</span>
+            <h3 class="mt-5 text-xl font-bold text-[#071b35] dark:text-white">{{ project.title }}</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{{ project.text }}</p>
+          </article>
         </div>
 
-        <!-- CTA Banner -->
-        <div class="bg-gradient-to-r from-orange-50 to-white dark:from-orange-900/40 dark:to-gray-900 border border-[#FF6B00]/20 rounded-2xl p-8 md:p-12 text-center relative overflow-hidden group shadow-lg">
-          <div class="absolute inset-0 bg-[#FF6B00]/5 group-hover:bg-[#FF6B00]/10 transition-colors"></div>
-          <div class="relative z-10">
-            <h3 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Transforme sua Gestão de RH</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">Descubra como o Sistema Manager NEEO pode revolucionar a gestão de pessoas da sua empresa.</p>
-            <a href="http://45.232.21.53:31064/" target="_blank" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF6B00] hover:bg-[#ff8534] text-white rounded-full font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-orange-900/40">
-              Conhecer o Sistema NEEO
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-            </a>
-          </div>
+        <div class="mt-8 text-center">
+          <NuxtLink to="/projetos" class="inline-flex items-center gap-2 rounded-full border border-slate-300 px-6 py-3 font-bold text-[#0b2345] transition hover:border-[#0b2345] hover:bg-[#0b2345] hover:text-white dark:border-white/20 dark:text-white dark:hover:bg-white dark:hover:text-[#071b35]">
+            Ver projetos e cases <span>→</span>
+          </NuxtLink>
         </div>
       </div>
     </section>
 
-    <!-- Clientes -->
-    <section id="clientes" class="py-24 bg-gray-50 dark:bg-gray-900 transition-colors">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
-            <span class="text-[#FF6B00]">Confiança</span> que construímos
-          </h2>
+    <!-- TIMELINE -->
+    <section class="border-y border-slate-200 bg-slate-50 py-20 dark:border-white/10 dark:bg-[#051426] sm:py-24">
+      <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div class="max-w-3xl">
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">Linha do tempo</p>
+            <h2 class="mt-4 text-4xl font-bold tracking-[-0.035em] text-[#071b35] dark:text-white sm:text-5xl">{{ yearsOfHistory }} anos evoluindo com a tecnologia.</h2>
+            <p class="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">Da microinformática à nuvem e às operações digitais: cada etapa ampliou nossa capacidade de resolver problemas reais.</p>
+          </div>
+          <div class="hidden gap-2 md:flex">
+            <button class="grid h-11 w-11 place-items-center rounded-full border border-slate-300 text-[#0b2345] transition hover:bg-[#0b2345] hover:text-white dark:border-white/20 dark:text-white dark:hover:bg-white dark:hover:text-[#071b35]" aria-label="Marco anterior" @click="scrollTimeline('left')">←</button>
+            <button class="grid h-11 w-11 place-items-center rounded-full border border-slate-300 text-[#0b2345] transition hover:bg-[#0b2345] hover:text-white dark:border-white/20 dark:text-white dark:hover:bg-white dark:hover:text-[#071b35]" aria-label="Próximo marco" @click="scrollTimeline('right')">→</button>
+          </div>
         </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
-           <!-- Client Icons -->
-           <div class="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 hover:border-[#FF6B00]/30 transition-all duration-300 group cursor-pointer shadow-sm dark:shadow-none">
-             <img src="/img/iphan.png" class="h-10 w-auto grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" />
-           </div>
-           <div class="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 hover:border-[#FF6B00]/30 transition-all duration-300 group cursor-pointer shadow-sm dark:shadow-none">
-             <img src="/img/microsoft.png" class="h-8 w-auto grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" />
-           </div>
-           <div class="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 hover:border-[#FF6B00]/30 transition-all duration-300 group cursor-pointer shadow-sm dark:shadow-none">
-             <img src="/img/hp.png" class="h-10 w-auto grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" />
-           </div>
-           <div class="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 hover:border-[#FF6B00]/30 transition-all duration-300 group cursor-pointer shadow-sm dark:shadow-none">
-             <img src="/img/Michelin.png" class="h-10 w-auto grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" />
-           </div>
-           <div class="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 hover:border-[#FF6B00]/30 transition-all duration-300 group cursor-pointer shadow-sm dark:shadow-none">
-             <img src="/img/positivo.png" class="h-8 w-auto grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" />
-           </div>
-           <div class="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 hover:border-[#FF6B00]/30 transition-all duration-300 group cursor-pointer shadow-sm dark:shadow-none">
-             <img src="/img/prefeitura.png" class="h-10 w-auto grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" />
-           </div>
-           <div class="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 hover:border-[#FF6B00]/30 transition-all duration-300 group cursor-pointer shadow-sm dark:shadow-none">
-             <img src="/img/govbr.png" class="h-8 w-auto grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" />
-           </div>
-           <div class="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 hover:border-[#FF6B00]/30 transition-all duration-300 group cursor-pointer shadow-sm dark:shadow-none">
-             <img src="/img/PRF.png" class="h-12 w-auto grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" />
-           </div>
-           <div class="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 hover:border-[#FF6B00]/30 transition-all duration-300 group cursor-pointer shadow-sm dark:shadow-none">
-             <img src="/img/ans.png" class="h-10 w-auto grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" />
-           </div>
-           <div class="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 hover:border-[#FF6B00]/30 transition-all duration-300 group cursor-pointer shadow-sm dark:shadow-none">
-             <img src="/img/pjerj.png" class="h-10 w-auto grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" />
-           </div>
-           <div class="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 hover:border-[#FF6B00]/30 transition-all duration-300 group cursor-pointer shadow-sm dark:shadow-none">
-             <img src="/img/defesa civil.png" class="h-12 w-auto grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" />
-           </div>
-           <div class="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 hover:border-[#FF6B00]/30 transition-all duration-300 group cursor-pointer shadow-sm dark:shadow-none">
-             <img src="/img/eletrobras.png" class="h-10 w-auto grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" />
-           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Projetos Realizados -->
-    <section id="projetos" class="py-24 bg-white dark:bg-gray-950 transition-colors">
-      <div class="container mx-auto px-6">
-        <div class="flex justify-between items-end mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Projetos Realizados</h2>
-          <NuxtLink to="/projetos" class="text-blue-600 dark:text-blue-500 text-sm font-bold hover:text-blue-700 dark:hover:text-blue-400">Ver todos</NuxtLink>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-          <div v-for="(projeto, i) in projetosNovos" :key="i" class="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-8 flex flex-col items-center text-center hover:border-[#FF6B00]/50 transition-all group h-full shadow-sm dark:shadow-none">
-            <div class="mb-6 text-gray-400 group-hover:text-[#FF6B00] transition-colors">
-               <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" :d="projeto.icon"></path></svg>
+        <div ref="timelineScroll" class="hide-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-6 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+          <article v-for="event in timelineEvents" :key="`${event.year}-${event.title}`" class="relative min-h-[220px] w-[78vw] max-w-[300px] shrink-0 snap-start rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5">
+            <div class="flex items-center gap-3">
+              <span class="h-2.5 w-2.5 rounded-full bg-primary-500" />
+              <span class="text-sm font-black text-primary-600 dark:text-primary-300">{{ event.year }}</span>
             </div>
-            <h3 class="text-gray-900 dark:text-white font-bold text-lg mb-4">{{ projeto.title }}</h3>
-            <div class="space-y-1">
-              <p v-for="(line, idx) in projeto.lines" :key="idx" class="text-gray-600 dark:text-gray-400 text-sm font-medium">{{ line }}</p>
-            </div>
-          </div>
+            <h3 class="mt-7 text-xl font-bold text-[#071b35] dark:text-white">{{ event.title }}</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{{ event.description }}</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Carreiras Section -->
-    <section class="py-20 bg-white dark:bg-gray-900 transition-colors border-t border-gray-200 dark:border-white/5">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto">
-          <div class="bg-[#FF6B00] rounded-2xl p-8 md:p-12 relative overflow-hidden group shadow-2xl shadow-orange-500/20">
-            <div class="absolute top-0 right-0 p-4 opacity-10">
-               <svg class="w-64 h-64 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-            </div>
-            
-            <div class="relative z-10">
-              <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
-                <div>
-                  <div class="flex items-center gap-3 mb-4">
-                    <div class="bg-white/20 p-2 rounded-lg">
-                      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <span class="text-white font-bold uppercase tracking-wide">Carreiras NTL</span>
-                  </div>
-                  
-                  <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">
-                    Construa sua jornada de <br/> sucesso conosco
-                  </h3>
-                  <p class="text-white/80 mb-8 max-w-lg">
-                    Estamos sempre em busca de novos talentos. Confira nossas vagas abertas e venha fazer parte do time.
-                  </p>
-
-                  <NuxtLink to="/vagas" class="bg-white text-[#FF6B00] font-bold py-3 px-8 rounded-lg inline-flex items-center gap-2 hover:bg-gray-100 transition-colors shadow-lg">
-                     Ver vagas disponíveis
-                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                   </NuxtLink>
-                </div>
-
-                <!-- Mini Vagas List — dados reais do banco STC -->
-                <div class="space-y-3 w-full md:w-auto min-w-[300px]">
-                  <!-- Loading -->
-                  <template v-if="vagasPending">
-                    <div v-for="i in 3" :key="i" class="bg-white/10 p-4 rounded-xl border border-white/10 animate-pulse">
-                      <div class="h-4 bg-white/20 rounded w-3/4 mb-2"></div>
-                      <div class="h-3 bg-white/10 rounded w-1/2"></div>
-                    </div>
-                  </template>
-
-                  <!-- Sem vagas -->
-                  <div v-else-if="!vagasHome.length" class="bg-white/10 p-4 rounded-xl border border-white/10 text-center">
-                    <p class="text-white/70 text-sm">Nenhuma vaga ativa no momento.</p>
-                  </div>
-
-                  <!-- Lista de vagas reais -->
-                  <NuxtLink
-                    v-else
-                    v-for="vaga in vagasHome"
-                    :key="vaga.codigo"
-                    to="/vagas"
-                    class="flex justify-between items-center bg-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors border border-white/10 group/item block"
-                  >
-                    <div class="min-w-0 flex-1">
-                      <h4 class="text-white font-bold text-sm truncate">{{ vaga.nomeVaga }}</h4>
-                      <p class="text-white/70 text-xs mt-0.5">{{ vaga.cargo || 'Geral' }}</p>
-                    </div>
-                    <svg class="w-4 h-4 text-white/50 group-hover/item:text-white group-hover/item:translate-x-1 transition-all shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                  </NuxtLink>
-
-                  <!-- Ver todas -->
-                  <NuxtLink v-if="vagasHome.length" to="/vagas" class="block text-center text-white/60 hover:text-white text-xs py-2 transition-colors">
-                    Ver todas as vagas →
-                  </NuxtLink>
-                </div>
-              </div>
-            </div>
+    <!-- VAGAS CTA -->
+    <section class="py-20 sm:py-24 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div class="relative overflow-hidden rounded-[2rem] bg-[#0b2345] px-6 py-12 text-white shadow-ntl-dark sm:px-10 lg:grid lg:grid-cols-[1.2fr_.8fr] lg:items-center lg:px-14 lg:py-16">
+          <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-primary-500/20 blur-3xl" />
+          <div class="relative">
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary-200">Faça parte</p>
+            <h2 class="mt-4 max-w-3xl text-4xl font-bold tracking-[-0.035em] sm:text-5xl">Talento também é tecnologia.</h2>
+            <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-200">Confira vagas abertas em tempo real ou mantenha seu currículo no banco de talentos da NTL para futuras oportunidades.</p>
+          </div>
+          <div class="relative mt-8 flex flex-col gap-3 sm:flex-row lg:mt-0 lg:flex-col lg:items-stretch lg:pl-12">
+            <NuxtLink to="/vagas" class="rounded-full bg-white px-6 py-4 text-center font-bold text-[#071b35] transition hover:-translate-y-0.5">Ver vagas abertas</NuxtLink>
+            <a v-if="talentosUrl" :href="talentosUrl" target="_blank" rel="noopener" class="rounded-full border border-white/25 px-6 py-4 text-center font-bold text-white transition hover:bg-white/10">Cadastrar currículo ↗</a>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- Contato Section (Separated & Simplified) -->
-    <section class="py-24 bg-gray-50 dark:bg-black transition-colors">
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-          Vamos Conversar?
-        </h2>
-        <p class="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
-          Estamos prontos para entender sua necessidade e oferecer a melhor solução tecnológica para sua empresa.
-        </p>
-        
-        <NuxtLink to="/contato" class="inline-flex items-center gap-3 px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-bold text-lg transition-all transform hover:-translate-y-1 shadow-xl shadow-primary-600/30">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-          Falar com um especialista
-        </NuxtLink>
-      </div>
-    </section>
-
   </div>
 </template>
 
 <script setup lang="ts">
-
 interface VagaHome {
   codigo: number
   nomeVaga: string
   cargo: string | null
 }
 
-// Busca vagas reais do banco STC para exibir no card da home
+interface TalentosResponse {
+  url: string | null
+  source: string
+}
+
+const yearsOfHistory = new Date().getFullYear() - 1988
+
 const { data: vagasData, pending: vagasPending } = await useFetch<VagaHome[]>('/api/vagas', {
   default: () => []
 })
 
-// Mostra até 4 vagas no card da home
+const { data: talentosData } = await useFetch<TalentosResponse>('/api/talentos', {
+  default: () => ({ url: null, source: 'unavailable' })
+})
+
 const vagasHome = computed(() => (vagasData.value ?? []).slice(0, 4))
+const talentosUrl = computed(() => talentosData.value?.url ?? null)
+
+const solutionsScroll = ref<HTMLElement | null>(null)
+const timelineScroll = ref<HTMLElement | null>(null)
+
+const scrollElement = (element: HTMLElement | null, direction: 'left' | 'right', amount: number) => {
+  if (!element) return
+  element.scrollBy({ left: direction === 'left' ? -amount : amount, behavior: 'smooth' })
+}
+
+const scrollSolutions = (direction: 'left' | 'right') => scrollElement(solutionsScroll.value, direction, 390)
+const scrollTimeline = (direction: 'left' | 'right') => scrollElement(timelineScroll.value, direction, 320)
+
+const differentials = [
+  { number: '01', title: 'Experiência', text: 'Décadas planejando, executando e controlando projetos de tecnologia, atendimento e facilities.' },
+  { number: '02', title: 'Capacidade', text: 'Equipes e processos preparados para ambientes críticos, contratos de escala e diferentes níveis de serviço.' },
+  { number: '03', title: 'Vanguardismo', text: 'Adoção contínua de novas tecnologias, metodologias e modelos de operação para aumentar produtividade.' },
+  { number: '04', title: 'Proximidade', text: 'Soluções desenhadas de acordo com a realidade do cliente, sem perder governança, segurança e qualidade.' }
+]
 
 const solutions = [
   {
     title: 'Tecnologia da Informação',
-    description: 'Outsourcing específico até total em infraestrutura e suporte',
-    icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
-    items: ['Suporte a usuários e hardware', 'Administração de rede', 'Gestão de Service Desk', 'Gerenciamento de segurança']
+    description: 'Operação, sustentação e evolução de ambientes de TI com visão de serviço e continuidade.',
+    icon: 'TI',
+    items: ['Suporte a usuários e hardware', 'Administração de redes e servidores', 'Service Desk e operação', 'Segurança e gestão de serviços']
+  },
+  {
+    title: 'Fábrica de Software',
+    description: 'Sistemas sob medida, manutenção de legados e desenvolvimento para web, nuvem e ambientes corporativos.',
+    icon: '</>',
+    items: ['Análise e desenvolvimento', 'Aplicações customizadas', 'Portais e integrações', 'Modernização de sistemas legados']
+  },
+  {
+    title: 'Transformação Digital',
+    description: 'Processos, infraestrutura e aplicações organizados para uma operação realmente digital.',
+    icon: 'DX',
+    items: ['Cloud e virtualização', 'Paperless e digitalização', 'Operação híbrida e remota', 'Integração de processos e sistemas']
+  },
+  {
+    title: 'Teleatendimento',
+    description: 'Centrais de atendimento, service desk e operações dimensionadas para diferentes SLAs e escalas.',
+    icon: '24h',
+    items: ['Call center', 'Service desk', 'Operações 24x7', 'Gestão por indicadores e SLA']
   },
   {
     title: 'Facilities',
-    description: 'Outsourcing seletivo e alocação de pessoal especializado',
-    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
-    items: ['Pessoal especializado', 'Recrutamento e seleção', 'Departamento Pessoal', 'Gestão completa na Web']
-  },
-  {
-    title: 'Transformação Digital',
-    description: 'Conceito 3x5 para empresas digitais',
-    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-    items: ['Virtualização de Servidores', 'Hospedagem em nuvem', 'Digitalização de documentos', 'Infraestrutura escalável']
-  },
-  {
-    title: 'Home Office',
-    description: 'Suporte completo para trabalho remoto',
-    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
-    items: ['Suporte aos usuários remotos', 'Acesso seguro (VPN)', 'Gerenciamento de inventário', 'Controle de horas/produção']
-  },
-  {
-    title: 'Desenvolvimento',
-    description: 'Aplicações na nuvem ou local',
-    icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
-    items: ['Análise e programação', 'Suporte a sistemas legados', 'Portais Web', 'Aplicações customizadas']
+    description: 'Alocação e gestão de profissionais especializados para atividades administrativas e operacionais.',
+    icon: 'RH',
+    items: ['Recrutamento e seleção', 'Alocação de equipes', 'Gestão operacional', 'Apoio administrativo']
   },
   {
     title: 'NEEO',
-    description: 'Sistema de Rotinas Administrativas',
-    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
-    items: ['Banco de currículo', 'Contratação na web', 'Ponto Web', 'Contra cheque Web']
+    description: 'Gestão digital de rotinas administrativas e de pessoas para apoiar operações distribuídas.',
+    icon: 'N',
+    items: ['Banco de currículos', 'Contratação na web', 'Ponto e documentos', 'Visão gerencial da operação']
   }
 ]
 
-const timelineScroll = ref<HTMLElement | null>(null)
+const clients = [
+  { name: 'HP', logo: '/img/hp.png' },
+  { name: 'Microsoft', logo: '/img/microsoft.png' },
+  { name: 'Michelin', logo: '/img/Michelin.png' },
+  { name: 'ANS', logo: '/img/ans.png' },
+  { name: 'IPHAN', logo: '/img/iphan.png' },
+  { name: 'TJERJ', logo: '/img/pjerj.png' },
+  { name: 'Positivo', logo: '/img/positivo.png' },
+  { name: 'UFRRJ', logo: '/img/ufrrj.png' },
+  { name: 'Eletrobras', logo: '/img/eletrobras.png' },
+  { name: 'Defesa Civil', logo: '/img/defesa civil.png' }
+]
 
-const scrollTimeline = (direction: 'left' | 'right') => {
-  if (timelineScroll.value) {
-    const scrollAmount = 300
-    if (direction === 'left') {
-      timelineScroll.value.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
-    } else {
-      timelineScroll.value.scrollBy({ left: scrollAmount, behavior: 'smooth' })
-    }
-  }
-}
+const clientsLoop = [...clients, ...clients]
+
+const projectHighlights = [
+  { area: 'Fábrica de software', title: 'TJERJ', text: 'Projetos com equipes de análise, programação, gestão e supervisão para desenvolvimento de sistemas.' },
+  { area: 'Desenvolvimento', title: 'TRF da 3ª Região', text: 'Atuação com fábrica de software e profissionais de análise e desenvolvimento.' },
+  { area: 'Tecnologia', title: 'Defesa Civil RJ', text: 'Suporte ao parque de microinformática, infraestrutura e desenvolvimento de sistemas específicos.' },
+  { area: 'Service Desk', title: 'Operações de escala', text: 'Histórico de centrais com múltiplos níveis de serviço, inclusive operações contínuas e ambientes críticos.' }
+]
 
 const timelineEvents = [
-  { year: '1988', title: 'Fundação', description: 'Início da jornada' },
-  { year: '1990', title: 'Atuação Nacional', description: 'Expansão para todo o país' },
-  { year: '1993', title: 'Parceria Multinacional', description: 'Aliança estratégica global' },
-  { year: '1995', title: 'Linux', description: 'Adoção de tecnologias open source' },
-  { year: '1996', title: 'Antares', description: 'Antares Internet Provider' },
-  { year: '1997', title: 'ISO 9000', description: 'Certificação de qualidade' },
-  { year: '2001', title: 'Parceria Microsoft', description: 'Novas competências tecnológicas' },
-  { year: '2002', title: 'PMI', description: 'Excelência em gestão de projetos' },
-  { year: '2003/04', title: 'Revista Exame', description: 'Reconhecimento de mercado' },
-  { year: '2009', title: 'ITIL', description: 'Melhores práticas em TI' },
-  { year: '2010', title: 'NTL Facilities', description: 'Nascimento da divisão Facilities' },
-  { year: '2011', title: 'Fábrica Software', description: 'Desenvolvimento de sistemas' },
-  { year: '2014', title: 'Soluções Custom.', description: 'Foco total no cliente' },
-  { year: '2018', title: 'Transf. Digital', description: 'Modernização de processos' },
-  { year: '2019', title: 'NEEO', description: 'Lançamento do Sistema NEEO' },
-  { year: '2020', title: 'Tudo na Web', description: 'Migração completa para nuvem' },
-  { year: '2021', title: 'Mkt Digital', description: 'Nova estratégia de comunicação' },
-  { year: '2023', title: '35 Anos', description: 'Celebração de um legado' },
-]
-
-const projetosNovos = [
-  {
-    title: 'Tecnologia da Informação - TIC',
-    lines: ['Infraestrutura de TI', 'Serviço e assistências técnicas'],
-    icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
-  },
-  {
-    title: 'Teleatendimentos',
-    lines: ['Service desk', 'Call center'],
-    icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z'
-  },
-  {
-    title: 'Apoio Administrativo',
-    lines: ['Facilities', 'Terceirização'],
-    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z'
-  },
-  {
-    title: 'Fábrica de softwares',
-    lines: ['Programação e análise de sistemas', 'Soluções específicas'],
-    icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
-  },
-  {
-    title: 'Transformação Digital',
-    lines: ['Pequenas e médias empresas', 'Gestão e operação "Digital" na internet'],
-    icon: 'M13 10V3L4 14h7v7l9-11h-7z'
-  }
+  { year: '1988', title: 'Fundação', description: 'Nasce a NTL - Nova Tecnologia, iniciando uma trajetória voltada a serviços e tecnologia.' },
+  { year: '1990', title: 'Atuação nacional', description: 'A empresa amplia sua capacidade de atendimento para projetos em diferentes regiões do Brasil.' },
+  { year: '1993', title: 'Parcerias multinacionais', description: 'Início de parcerias e projetos com grandes fabricantes e empresas globais de tecnologia.' },
+  { year: '1995', title: 'Linux', description: 'Domínio de ambientes Linux para suporte e desenvolvimento de aplicações.' },
+  { year: '1996', title: 'Antares Internet Provider', description: 'A NTL participa da expansão inicial da internet comercial no Brasil.' },
+  { year: '1997', title: 'ISO 9000', description: 'Certificação de qualidade e consolidação de processos estruturados de operação.' },
+  { year: '2001', title: 'Parceria Microsoft', description: 'Ampliação de competências em ambientes e tecnologias Microsoft.' },
+  { year: '2002', title: 'PMI', description: 'Gestão de projetos fortalecida com práticas e metodologia de gerenciamento.' },
+  { year: '2003/04', title: 'Reconhecimento nacional', description: 'NTL figura entre integradores de destaque no mercado brasileiro de tecnologia.' },
+  { year: '2009', title: 'ITIL', description: 'Adoção e consolidação de melhores práticas para gestão de serviços de TI.' },
+  { year: '2010', title: 'NTL Facilities', description: 'Expansão da atuação para facilities, administração e alocação de pessoal.' },
+  { year: '2011', title: 'Fábrica de Software', description: 'Criação da Divisão de Engenharia de Sistemas para desenvolvimento de soluções sob medida.' },
+  { year: '2014', title: 'Soluções customizadas', description: 'Foco ampliado em projetos específicos, integrando serviços e tecnologia.' },
+  { year: '2018', title: 'Transformação Digital', description: 'Nova frente para apoiar clientes na digitalização de infraestrutura, processos e operação.' },
+  { year: '2019', title: 'NEEO', description: 'Consolidação da plataforma de rotinas administrativas e gestão operacional.' },
+  { year: '2020', title: 'Tudo na Web', description: 'Operações preparadas para nuvem e trabalho remoto, mantendo a continuidade durante a pandemia.' },
+  { year: '2021', title: 'Nova fase digital', description: 'Reorganização interna, novos produtos e fortalecimento da comunicação B2B.' },
+  { year: '2023', title: '35 anos', description: 'Marco de 35 anos de inovação, serviços e parcerias de longo prazo.' },
+  { year: '2026', title: 'Experiência renovada', description: 'Modernização da presença digital da NTL, conectando o site institucional aos sistemas e dados da operação.' }
 ]
 </script>
 
 <style scoped>
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.text-transparent {
-  -webkit-text-fill-color: transparent;
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .client-marquee > div {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 </style>
