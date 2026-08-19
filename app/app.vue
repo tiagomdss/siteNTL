@@ -1,90 +1,74 @@
 <template>
   <div>
-    <!-- Loading Screen -->
     <GlobalLoader :loading="isLoading" />
 
-    <div class="min-h-screen bg-gray-50 dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
-    <!-- Navbar Component -->
-    <Navbar />
+    <div class="min-h-screen overflow-x-clip bg-white text-slate-900 transition-colors duration-300 dark:bg-[#06182f] dark:text-white">
+      <Navbar />
 
-    <!-- Main Content -->
-    <main>
-      <NuxtPage />
-    </main>
+      <main class="min-w-0 overflow-x-clip">
+        <NuxtPage />
+      </main>
 
-    <!-- Scroll to Top Button -->
-    <button 
-      @click="scrollToTop"
-      class="scroll-to-top"
-      :class="{ 'show': showScrollTop }"
-      aria-label="Voltar ao topo"
-    >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-      </svg>
-    </button>
+      <button
+        class="fixed bottom-5 right-4 z-40 grid h-12 w-12 place-items-center rounded-full bg-[#0b2345] text-white shadow-xl transition-all duration-300 hover:-translate-y-1 dark:bg-white dark:text-[#071b35] sm:right-5"
+        :class="showScrollTop ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'"
+        aria-label="Voltar ao topo"
+        @click="scrollToTop"
+      >
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>
+      </button>
 
-    <!-- Footer -->
-    <footer class="glass mt-20 py-12 border-t border-gray-200 dark:border-white/10 bg-white/50 dark:bg-transparent transition-colors">
-      <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <!-- Company Info -->
-          <div class="col-span-1 md:col-span-2">
-            <div class="flex items-center space-x-3 mb-4">
-              <img src="/img/Marca NTL Branca.png" alt="NTL Logo" class="h-10 drop-shadow-[0_0_8px_rgba(0,0,0,0.8)] dark:drop-shadow-none" />
+      <footer class="overflow-x-clip border-t border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-[#051426]">
+        <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+          <div class="grid min-w-0 gap-10 md:grid-cols-2 lg:grid-cols-4">
+            <div class="min-w-0 lg:col-span-2">
+              <NuxtLink to="/" class="inline-flex max-w-full items-center">
+                <img src="/img/Marcas NTL3.png" alt="NTL Nova Tecnologia" class="h-10 w-auto max-w-full object-contain dark:hidden sm:h-11" />
+                <img src="/img/Marca NTL Branca.png" alt="NTL Nova Tecnologia" class="hidden h-10 w-auto max-w-full object-contain dark:block sm:h-11" />
+              </NuxtLink>
+              <p class="mt-5 max-w-xl break-words text-sm leading-7 text-slate-600 dark:text-slate-300">
+                Desde 1988, tecnologia, serviços e pessoas trabalhando juntos para melhorar a operação e a performance de organizações em todo o Brasil.
+              </p>
+              <div class="mt-6 flex max-w-full flex-wrap gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400 sm:text-xs sm:tracking-[0.18em]">
+                <span class="rounded-full border border-slate-200 px-3 py-2 dark:border-white/10">Tecnologia</span>
+                <span class="rounded-full border border-slate-200 px-3 py-2 dark:border-white/10">Facilities</span>
+                <span class="rounded-full border border-slate-200 px-3 py-2 dark:border-white/10">Software</span>
+                <span class="rounded-full border border-slate-200 px-3 py-2 dark:border-white/10">Transformação Digital</span>
+              </div>
             </div>
-            <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
-              Há mais de 30 anos oferecendo soluções sob medida para a performance de sua empresa.
-            </p>
+
+            <div class="min-w-0">
+              <h3 class="text-sm font-bold uppercase tracking-[0.18em] text-[#0b2345] dark:text-primary-300">Navegação</h3>
+              <ul class="mt-5 space-y-3">
+                <li v-for="item in menuItems" :key="item.name">
+                  <NuxtLink :to="item.path" class="text-sm text-slate-600 transition hover:text-[#0b2345] dark:text-slate-300 dark:hover:text-white">
+                    {{ item.name }}
+                  </NuxtLink>
+                </li>
+              </ul>
+            </div>
+
+            <div class="min-w-0">
+              <h3 class="text-sm font-bold uppercase tracking-[0.18em] text-[#0b2345] dark:text-primary-300">Contato</h3>
+              <div class="mt-5 space-y-4 break-words text-sm text-slate-600 dark:text-slate-300">
+                <p>Rio de Janeiro, RJ</p>
+                <a href="mailto:contato@ntl.com.br" class="block break-all transition hover:text-[#0b2345] dark:hover:text-white">contato@ntl.com.br</a>
+                <a href="tel:+552131507309" class="block transition hover:text-[#0b2345] dark:hover:text-white">(21) 3150-7309</a>
+                <a href="https://wa.me/5521993259808?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20institucional." target="_blank" rel="noopener" class="block transition hover:text-[#0b2345] dark:hover:text-white">WhatsApp: (21) 99325-9808</a>
+              </div>
+              <div class="mt-6 flex gap-3">
+                <a href="https://www.linkedin.com/company/ntl-nova-tecnologia-ltda./" target="_blank" rel="noopener" class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-sm font-bold text-slate-600 transition hover:border-[#0b2345] hover:text-[#0b2345] dark:border-white/10 dark:text-slate-300 dark:hover:border-white dark:hover:text-white" aria-label="LinkedIn">in</a>
+                <a href="https://instagram.com/ntl_nova_tecnologia" target="_blank" rel="noopener" class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-sm font-bold text-slate-600 transition hover:border-[#0b2345] hover:text-[#0b2345] dark:border-white/10 dark:text-slate-300 dark:hover:border-white dark:hover:text-white" aria-label="Instagram">ig</a>
+              </div>
+            </div>
           </div>
 
-          <!-- Quick Links -->
-          <div>
-            <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Links Rápidos</h3>
-            <ul class="space-y-2">
-              <li v-for="item in menuItems" :key="item.name">
-                <NuxtLink :to="item.path" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-sm">
-                  {{ item.name }}
-                </NuxtLink>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Contact -->
-          <div>
-            <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Contato</h3>
-            <ul class="space-y-3 text-sm">
-              <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
-                <svg class="w-4 h-4 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                Rio de Janeiro, RJ
-              </li>
-              <li>
-                <a href="mailto:contato@ntl.com.br" class="flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                  <svg class="w-4 h-4 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                  contato@ntl.com.br
-                </a>
-              </li>
-              <li>
-                <a href="tel:+552131507309" class="flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                  <svg class="w-4 h-4 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                  (21) 3150-7309
-                </a>
-              </li>
-              <li>
-                <a href="https://wa.me/5521993259808" target="_blank" class="flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:text-green-500 transition-colors">
-                  <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                  WhatsApp
-                </a>
-              </li>
-            </ul>
+          <div class="mt-12 flex min-w-0 flex-col gap-3 border-t border-slate-200 pt-7 text-xs text-slate-500 dark:border-white/10 dark:text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+            <p class="break-words">© {{ currentYear }} NTL - Nova Tecnologia. Todos os direitos reservados.</p>
+            <p>Inovação e serviços desde 1988.</p>
           </div>
         </div>
-
-        <div class="border-t border-gray-200 dark:border-white/10 mt-8 pt-8 text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>&copy; {{ new Date().getFullYear() }} NTL - Nova Tecnologia. Todos os direitos reservados.</p>
-        </div>
-      </div>
-    </footer>
+      </footer>
     </div>
   </div>
 </template>
@@ -92,41 +76,36 @@
 <script setup lang="ts">
 const showScrollTop = ref(false)
 const isLoading = ref(true)
+const currentYear = new Date().getFullYear()
 const { initTheme } = useTheme()
-
-onMounted(() => {
-  initTheme()
-})
-
-// Hide loading screen after page is fully ready
-onMounted(() => {
-  nextTick(() => {
-    setTimeout(() => {
-      isLoading.value = false
-    }, 800)
-  })
-})
 
 const menuItems = [
   { name: 'Início', path: '/' },
   { name: 'Empresa', path: '/#empresa' },
   { name: 'Soluções', path: '/#solucoes' },
+  { name: 'Clientes', path: '/#clientes' },
   { name: 'Projetos', path: '/projetos' },
   { name: 'Vagas', path: '/vagas' },
   { name: 'Contato', path: '/contato' }
 ]
 
-// Scroll to top function
-const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+const onScroll = () => {
+  showScrollTop.value = window.scrollY > 420
 }
 
-// Handle scroll effect
+const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+
 onMounted(() => {
-  window.addEventListener('scroll', () => {
-    showScrollTop.value = window.scrollY > 300
+  initTheme()
+  onScroll()
+  window.addEventListener('scroll', onScroll, { passive: true })
+
+  nextTick(() => {
+    window.setTimeout(() => {
+      isLoading.value = false
+    }, 450)
   })
 })
+
+onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 </script>
-
-

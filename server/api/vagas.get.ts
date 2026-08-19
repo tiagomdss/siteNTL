@@ -1,28 +1,20 @@
-// @ts-ignore - mssql é CJS, o Nitro trata como externo (externals config)
-import sql from 'mssql'
+import { getStcPool } from '../utils/stc'
 
-const getConfig = () => ({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  server: process.env.DB_SERVER || '',
-  port: Number(process.env.DB_PORT) || 1433,
-  database: process.env.DB_NAME || 'stc',
-  options: {
-    encrypt: false,
-    trustServerCertificate: true
-  },
-  requestTimeout: 20000,
-  connectionTimeout: 15000
-})
+const CACHE_TTL = 60_000
+let cachedVagas: any[] | null = null
+let cachedAt = 0
 
 export default defineEventHandler(async (event) => {
-  let pool: any = null
+  setHeader(event, 'Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300')
+
+  if (cachedVagas && Date.now() - cachedAt < CACHE_TTL) {
+    return cachedVagas
+  }
 
   try {
-    pool = await sql.connect(getConfig())
-
+    const pool = await getStcPool()
     const result = await pool.request().query(`
-      SELECT 
+      SELECT
         v.codigo,
         v.nomeVaga,
         v.salario,
@@ -34,32 +26,30 @@ export default defineEventHandler(async (event) => {
       FROM stc.vagas v
       LEFT JOIN stc.cargo c ON v.cargo = c.codigo
       WHERE v.ativo = 1
-      ORDER BY v.dataCadastro DESC
+      ORDER BY v.dataCadastro DESC, v.codigo DESC
     `)
 
-    return result.recordset.map((vaga: any) => ({
-      codigo: vaga.codigo,
-      nomeVaga: vaga.nomeVaga,
-      salario: vaga.salario ? Number(vaga.salario) : null,
-      requisitos: vaga.requisitos ?? null,
-      quantidadeVaga: vaga.quantidadeVaga ?? null,
-      pcd: vaga.pcd ?? false,
+    cachedVagas = result.recordset.map((vaga: any) => ({
+      codigo: Number(vaga.codigo),
+      nomeVaga: String(vaga.nomeVaga ?? 'Oportunidade NTL'),
+      salario: vaga.salario == null ? null : Number(vaga.salario),
+      requisitos: vaga.requisitos == null ? null : String(vaga.requisitos),
+      quantidadeVaga: vaga.quantidadeVaga == null ? 1 : Number(vaga.quantidadeVaga),
+      pcd: Boolean(vaga.pcd),
       dataCadastro: vaga.dataCadastro ? new Date(vaga.dataCadastro).toISOString() : null,
-      cargo: vaga.cargo ?? null
+      cargo: vaga.cargo == null ? null : String(vaga.cargo)
     }))
+    cachedAt = Date.now()
+
+    return cachedVagas
   } catch (error: any) {
-    // Loga o erro real nos logs do Vercel para facilitar debug
-    console.error('[API /vagas] Erro:', error.message)
-    console.error('[API /vagas] Stack:', error.stack)
-    console.error('[API /vagas] Config server:', process.env.DB_SERVER, 'port:', process.env.DB_PORT)
+    console.error('[API /vagas] Falha ao consultar STC:', error?.message)
+
+    if (cachedVagas) return cachedVagas
 
     throw createError({
-      statusCode: 500,
-      statusMessage: `Erro ao buscar vagas: ${error.message}`
+      statusCode: 503,
+      statusMessage: 'O serviço de vagas está temporariamente indisponível.'
     })
-  } finally {
-    if (pool) {
-      try { await pool.close() } catch {}
-    }
   }
 })
