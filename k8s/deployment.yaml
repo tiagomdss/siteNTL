@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sitentl
+  namespace: srv
+  labels:
+    app: sitentl
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sitentl
+  template:
+    metadata:
+      labels:
+        app: sitentl
+    spec:
+      containers:
+        - name: sitentl
+          image: git.ntl.com.br:5050/neeo-projetos/sitentl:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: HOST
+              value: "0.0.0.0"
+            - name: PORT
+              value: "3000"
+            - name: NUXT_PUBLIC_SITE_URL
+              value: "https://ntl.com.br"
+            - name: NUXT_PUBLIC_SITE_NAME
+              value: "NTL - Nova Tecnologia"
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: sitentl-secrets
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sitentl-secrets
+                  key: DB_PASSWORD
+            - name: DB_SERVER
+              valueFrom:
+                secretKeyRef:
+                  name: sitentl-secrets
+                  key: DB_SERVER
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: sitentl-secrets
+                  key: DB_PORT
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: sitentl-secrets
+                  key: DB_NAME
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20
