@@ -132,10 +132,8 @@ main > div.min-h-screen.pt-20 > section:first-child > .relative.mx-auto {
   }
 }
 
-/* Hero da home: tablets e celulares sempre empilham texto + vagas.
-   Isso evita que telas móveis em landscape/device-scale acabem entrando
-   na composição desktop e empurrem o card de oportunidades para fora. */
-@media (max-width: 1279px) {
+/* Hero da home: apenas celulares e telas estreitas (< 768px) empilham texto + vagas */
+@media (max-width: 767px) {
   main .overflow-x-hidden > section:first-child {
     min-height: auto !important;
     align-items: flex-start !important;
@@ -155,8 +153,7 @@ main > div.min-h-screen.pt-20 > section:first-child > .relative.mx-auto {
   }
 
   main .overflow-x-hidden > section:first-child h1 {
-    max-width: 13ch;
-    font-size: clamp(2.75rem, 7vw, 4.5rem) !important;
+    font-size: clamp(2.35rem, 9vw, 3.75rem) !important;
     line-height: .98 !important;
   }
 

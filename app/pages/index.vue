@@ -8,51 +8,51 @@
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(52,127,246,.16),transparent_38%)]" />
       </div>
 
-      <div class="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-5 py-20 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:py-28">
+      <div class="relative mx-auto grid w-full max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-2 md:gap-8 lg:grid-cols-[1.1fr_.9fr] lg:gap-12 lg:px-8 lg:py-20 xl:grid-cols-[1.05fr_.95fr]">
         <div class="max-w-3xl">
-          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#0b2345]/15 bg-white/75 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0b2345] shadow-sm backdrop-blur dark:border-white/15 dark:bg-white/5 dark:text-primary-200">
+          <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-[#0b2345]/15 bg-white/75 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#0b2345] shadow-sm backdrop-blur sm:mb-6 sm:px-4 sm:py-2 sm:text-xs dark:border-white/15 dark:bg-white/5 dark:text-primary-200">
             <span class="h-2 w-2 rounded-full bg-primary-500" />
             Tecnologia, serviços e pessoas desde 1988
           </div>
 
-          <h1 class="text-balance text-5xl font-bold leading-[1.02] tracking-[-0.045em] text-[#071b35] dark:text-white sm:text-6xl lg:text-7xl xl:text-[5.35rem]">
+          <h1 class="text-balance text-3xl font-bold leading-[1.06] tracking-[-0.04em] text-[#071b35] dark:text-white sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-[4.5rem]">
             Performance para operações que
             <span class="text-primary-600 dark:text-primary-300">não podem parar.</span>
           </h1>
 
-          <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300 sm:text-xl">
+          <p class="mt-5 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg sm:leading-8 lg:text-xl">
             A NTL une experiência, tecnologia e capital humano para entregar infraestrutura, software, atendimento, facilities e transformação digital sob medida.
           </p>
 
-          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a href="#solucoes" class="inline-flex items-center justify-center rounded-full bg-[#0b2345] px-7 py-4 font-bold text-white shadow-xl shadow-[#071b35]/15 transition hover:-translate-y-0.5 hover:bg-[#12345d] dark:bg-white dark:text-[#071b35] dark:hover:bg-slate-100">
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a href="#solucoes" class="inline-flex items-center justify-center rounded-full bg-[#0b2345] px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-[#071b35]/15 transition hover:-translate-y-0.5 hover:bg-[#12345d] sm:px-7 sm:py-4 sm:text-base dark:bg-white dark:text-[#071b35] dark:hover:bg-slate-100">
               Conheça nossas soluções
             </a>
-            <NuxtLink to="/contato" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/70 px-7 py-4 font-bold text-[#0b2345] backdrop-blur transition hover:-translate-y-0.5 hover:border-[#0b2345] dark:border-white/20 dark:bg-white/5 dark:text-white dark:hover:border-white">
+            <NuxtLink to="/contato" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/70 px-6 py-3.5 text-sm font-bold text-[#0b2345] backdrop-blur transition hover:-translate-y-0.5 hover:border-[#0b2345] sm:px-7 sm:py-4 sm:text-base dark:border-white/20 dark:bg-white/5 dark:text-white dark:hover:border-white">
               Fale com um especialista
               <span aria-hidden="true">↗</span>
             </NuxtLink>
           </div>
 
-          <div class="mt-11 grid max-w-2xl grid-cols-3 gap-3 border-t border-slate-200 pt-7 dark:border-white/10">
+          <div class="mt-8 grid max-w-2xl grid-cols-3 gap-2 border-t border-slate-200 pt-6 sm:gap-3 sm:pt-7 dark:border-white/10">
             <div>
-              <strong class="block text-2xl font-bold text-[#071b35] dark:text-white sm:text-3xl">{{ yearsOfHistory }}+</strong>
+              <strong class="block text-xl font-bold text-[#071b35] dark:text-white sm:text-2xl lg:text-3xl">{{ yearsOfHistory }}+</strong>
               <span class="mt-1 block text-xs leading-5 text-slate-500 dark:text-slate-400 sm:text-sm">anos de história</span>
             </div>
             <div>
-              <strong class="block text-2xl font-bold text-[#071b35] dark:text-white sm:text-3xl">Brasil</strong>
+              <strong class="block text-xl font-bold text-[#071b35] dark:text-white sm:text-2xl lg:text-3xl">Brasil</strong>
               <span class="mt-1 block text-xs leading-5 text-slate-500 dark:text-slate-400 sm:text-sm">atuação nacional</span>
             </div>
             <div>
-              <strong class="block text-2xl font-bold text-[#071b35] dark:text-white sm:text-3xl">Full service</strong>
+              <strong class="block text-xl font-bold text-[#071b35] dark:text-white sm:text-2xl lg:text-3xl">Full service</strong>
               <span class="mt-1 block text-xs leading-5 text-slate-500 dark:text-slate-400 sm:text-sm">soluções integradas</span>
             </div>
           </div>
         </div>
 
         <!-- Vagas em tempo real -->
-        <div class="lg:justify-self-end">
-          <div class="relative mx-auto max-w-xl overflow-hidden rounded-[2rem] border border-white/70 bg-white/88 p-2 shadow-[0_30px_90px_-30px_rgba(7,27,53,.45)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0b2345]/88 lg:mx-0">
+        <div class="w-full md:justify-self-end">
+          <div class="relative mx-auto w-full max-w-xl overflow-hidden rounded-[2rem] border border-white/70 bg-white/88 p-2 shadow-[0_30px_90px_-30px_rgba(7,27,53,.45)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0b2345]/88 lg:mx-0">
             <div class="rounded-[1.6rem] border border-slate-200/80 bg-white p-5 dark:border-white/10 dark:bg-[#071b35] sm:p-6">
               <div class="flex items-center justify-between gap-4">
                 <div>
